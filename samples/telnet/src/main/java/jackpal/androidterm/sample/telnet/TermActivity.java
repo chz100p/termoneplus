@@ -40,7 +40,7 @@ public class TermActivity extends AppCompatActivity {
      * Handler which will receive the message from the Telnet connect thread
      * that the connection has been established.
      */
-    Handler mHandler = new Handler() {
+    Handler mHandler = new Handler(getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == MSG_CONNECTED) {

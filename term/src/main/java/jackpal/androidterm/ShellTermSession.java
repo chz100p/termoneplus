@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 package jackpal.androidterm;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -47,7 +48,6 @@ public class ShellTermSession extends GenericTermSession {
     private String mInitialCommand;
 
     private static final int PROCESS_EXITED = 1;
-    private Handler mMsgHandler = new ProcessHandler(this);
 
 
     public ShellTermSession(TermSettings settings, PathSettings path_settings, String initialCommand) throws IOException {
@@ -58,13 +58,14 @@ public class ShellTermSession extends GenericTermSession {
 
         mProcId = createShellProcess(settings, path_settings);
 
+        final Handler handler = new ProcessHandler(this);
         mWatcherThread = new Thread() {
             @Override
             public void run() {
                 Log.i(Application.APP_TAG, "waiting for: " + mProcId);
                 int result = Process.waitExit(mProcId);
                 Log.i(Application.APP_TAG, "Subprocess exited: " + result);
-                mMsgHandler.sendMessage(mMsgHandler.obtainMessage(PROCESS_EXITED, result));
+                handler.sendMessage(handler.obtainMessage(PROCESS_EXITED, result));
             }
         };
         mWatcherThread.setName("Process watcher");
@@ -185,6 +186,7 @@ public class ShellTermSession extends GenericTermSession {
         private final WeakReference<ShellTermSession> reference;
 
         ProcessHandler(ShellTermSession session) {
+            super(Looper.getMainLooper());
             reference = new WeakReference<>(session);
         }
 

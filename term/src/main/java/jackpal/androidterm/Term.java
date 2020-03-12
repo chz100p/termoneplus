@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2017-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ public class Term extends AppCompatActivity
             mTermService = null;
         }
     };
-    private Handler mHandler = new Handler();
+    private Handler mHandler;
 
     protected static TermSession createTermSession(
             Context context,
@@ -231,6 +231,7 @@ public class Term extends AppCompatActivity
         super.onCreate(icicle);
 
         Log.v(Application.APP_TAG, "onCreate");
+        mHandler = new Handler(getMainLooper());
 
         if (icicle == null)
             onNewIntent(getIntent());
@@ -594,10 +595,9 @@ public class Term extends AppCompatActivity
         final AlertDialog.Builder b = new AlertDialog.Builder(this);
         b.setIcon(android.R.drawable.ic_dialog_alert);
         b.setMessage(R.string.confirm_window_close_message);
-        final Runnable closeWindow = this::doCloseWindow;
         b.setPositiveButton(android.R.string.ok, (dialog, id) -> {
             dialog.dismiss();
-            mHandler.post(closeWindow);
+            mHandler.post(this::doCloseWindow);
         });
         b.setNegativeButton(android.R.string.cancel, null);
         b.show();
