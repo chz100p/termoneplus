@@ -1,6 +1,6 @@
 tasks.named('wrapper') {
-    gradleVersion = '6.8.1'
-    distributionSha256Sum = 'fd591a34af7385730970399f473afabdb8b28d57fd97d6625c388d090039d6fd'
+    gradleVersion = '6.8.2'
+    distributionSha256Sum = '8de6efc274ab52332a9c820366dd5cf5fc9d35ec7078fd70c8ec6913431ee610'
 }
 /* Notes for distributionSha256Sum
    Android Studio 3.5 explicitly require checksum to be removed, see
