@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -183,7 +183,7 @@ public class FileSelection extends AppCompatActivity {
         }
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder {
+    private static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView name;
 
         public ViewHolder(View view) {
