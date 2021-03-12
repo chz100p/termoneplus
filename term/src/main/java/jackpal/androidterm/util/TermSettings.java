@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 import jackpal.androidterm.emulatorview.ColorScheme;
 

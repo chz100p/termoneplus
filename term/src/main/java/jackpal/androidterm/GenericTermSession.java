@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,7 @@ import android.util.Log;
 
 import com.termoneplus.TermIO;
 
-import jackpal.androidterm.emulatorview.ColorScheme;
 import jackpal.androidterm.emulatorview.TermSession;
-
 import jackpal.androidterm.util.TermSettings;
 
 

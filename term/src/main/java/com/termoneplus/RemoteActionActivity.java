@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,14 +19,12 @@ package com.termoneplus;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceManager;
 import jackpal.androidterm.TermService;
 import jackpal.androidterm.compat.PathCollector;
 import jackpal.androidterm.compat.PathSettings;
