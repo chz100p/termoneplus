@@ -48,7 +48,7 @@
         tools:context="com.termoneplus.shortcuts.FileSelection">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/directory_list"
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/path"

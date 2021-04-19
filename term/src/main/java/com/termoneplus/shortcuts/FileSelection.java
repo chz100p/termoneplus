@@ -95,9 +95,8 @@ public class FileSelection extends AppCompatActivity {
             cwd = DefaultPath.get(getApplicationContext());
 
         final Adapter adapter = new Adapter(cwd);
-
         {
-            RecyclerView view = findViewById(R.id.directory_list);
+            RecyclerView view = findViewById(R.id.list);
             view.setAdapter(adapter);
         }
 
