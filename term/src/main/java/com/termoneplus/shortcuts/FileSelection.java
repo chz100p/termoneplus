@@ -127,12 +127,12 @@ public class FileSelection extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: // Action bar home/up button selected
-                finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == android.R.id.home) // Respond to the action bar's Up/Home button
+            finish();
+        else
+            return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override

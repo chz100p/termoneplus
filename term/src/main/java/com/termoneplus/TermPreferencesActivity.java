@@ -62,13 +62,12 @@ public class TermPreferencesActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: // Action bar home button selected
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        int id = item.getItemId();
+        if (id == android.R.id.home) // Respond to the action bar's Up/Home button
+            NavUtils.navigateUpFromSameTask(this);
+        else
+            return super.onOptionsItemSelected(item);
+        return true;
     }
 
     private void loadPreferences() {
