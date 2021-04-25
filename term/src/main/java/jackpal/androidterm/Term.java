@@ -36,8 +36,6 @@ import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -93,11 +91,6 @@ public class Term extends AppCompatActivity
      * The name of the ViewFlipper in the resources.
      */
     private static final int VIEW_FLIPPER = R.id.view_flipper;
-    private final static int SELECT_TEXT_ID = 0;
-    private final static int COPY_ALL_ID = 1;
-    private final static int PASTE_ID = 2;
-    private final static int SEND_CONTROL_KEY_ID = 3;
-    private final static int SEND_FN_KEY_ID = 4;
     /**
      * The ViewFlipper which holds the collection of EmulatorView widgets.
      */
@@ -390,7 +383,7 @@ public class Term extends AppCompatActivity
         return mTermService.getSession(mViewFlipper.getDisplayedChild());
     }
 
-    private EmulatorView getCurrentEmulatorView() {
+    protected EmulatorView getCurrentEmulatorView() {
         return (EmulatorView) mViewFlipper.getCurrentView();
     }
 
@@ -709,44 +702,6 @@ public class Term extends AppCompatActivity
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        menu.setHeaderTitle(R.string.edit_text);
-        menu.add(0, SELECT_TEXT_ID, 0, R.string.select_text);
-        menu.add(0, COPY_ALL_ID, 0, R.string.copy_all);
-        menu.add(0, PASTE_ID, 0, R.string.paste);
-        menu.add(0, SEND_CONTROL_KEY_ID, 0, R.string.send_control_key);
-        menu.add(0, SEND_FN_KEY_ID, 0, R.string.send_fn_key);
-        if (!canPaste()) {
-            menu.getItem(PASTE_ID).setEnabled(false);
-        }
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case SELECT_TEXT_ID:
-                getCurrentEmulatorView().toggleSelectingText();
-                return true;
-            case COPY_ALL_ID:
-                doCopyAll();
-                return true;
-            case PASTE_ID:
-                doPaste();
-                return true;
-            case SEND_CONTROL_KEY_ID:
-                doSendControlKey();
-                return true;
-            case SEND_FN_KEY_ID:
-                doSendFnKey();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
@@ -844,7 +799,7 @@ public class Term extends AppCompatActivity
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    private boolean canPaste() {
+    protected boolean canPaste() {
         return canPaste(new SimpleClipboardManager(this));
     }
 
@@ -893,7 +848,7 @@ public class Term extends AppCompatActivity
         }
     }
 
-    private void doCopyAll() {
+    protected void doCopyAll() {
         TermSession session = getCurrentTermSession();
         if (session == null) return;
 
@@ -901,7 +856,7 @@ public class Term extends AppCompatActivity
         clip.setText(session.getTranscriptText().trim());
     }
 
-    private void doPaste() {
+    protected void doPaste() {
         TermSession session = getCurrentTermSession();
         if (session == null) return;
 
@@ -912,14 +867,6 @@ public class Term extends AppCompatActivity
         if (TextUtils.isEmpty(paste)) return;
 
         session.write(paste.toString());
-    }
-
-    private void doSendControlKey() {
-        getCurrentEmulatorView().sendControlKey();
-    }
-
-    private void doSendFnKey() {
-        getCurrentEmulatorView().sendFnKey();
     }
 
     private void doDocumentKeys() {
