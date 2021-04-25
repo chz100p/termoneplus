@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2021 Michal L
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,9 +23,25 @@
     </string-array>
 
     <string-array name="entries_actionbar_preference">
-        <!-- <item>Pasek narzędziowy wyłączony</item> -->
-        <item>Zawsze pokazuj pasek narzędziowy</item>
-        <item>Ukryj pasek narzędzi (dotknij góry ekranu lub przycisk Menu, aby wyświetlić)</item>
+        <item>Zawsze pokazuj pasek akcji</item>
+        <item>Ukryj pasek akcji (dotknij góry ekranu lub przycisku Menu, aby wyświetlić)</item>
+    </string-array>
+
+    <string-array name="entries_thememode_preference">
+        <item>Ciemny</item>
+        <item>Jasny</item>
+        <item>Systemowy</item>
+    </string-array>
+
+    <string-array name="entries_orientation_preference">
+        <item>Automatyczna</item>
+        <item>Pozioma</item>
+        <item>Pionowa</item>
+    </string-array>
+
+    <string-array name="entries_sizecalc_preference">
+        <item>Po zmianie rozmiaru</item>
+        <item>Podczas pomiaru rozmiaru (starsze)</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">
@@ -70,10 +87,10 @@
         <item>Bursztynowy tekst na czarnym tle</item>
         <item>Czerwony tekst na czarnym tle</item>
         <item>Błękitny tekst na czarnym tle</item>
-        <item>Solarized Light</item>
-        <item>Solarized Dark</item>
+        <item>Jasny Solarized</item>
+        <item>Ciemny Solarized</item>
         <item>Linux Console</item>
-        <item>Dark Pastels</item>
+        <item>Ciemny pastelowy</item>
     </string-array>
 
     <string-array name="entries_backaction_preference">
