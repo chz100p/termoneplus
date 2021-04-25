@@ -542,24 +542,21 @@ public class Term extends AppCompatActivity
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_window_list:
-                startActivityForResult(new Intent(this, WindowListActivity.class), REQUEST_CHOOSE_WINDOW);
-                return true;
-            case R.id.nav_preferences:
-                doPreferences();
-                return true;
-            case R.id.nav_special_keys:
-                doDocumentKeys();
-                return true;
-            case R.id.nav_action_help:
-                WrapOpenURL.launch(this, R.string.help_url);
-                return true;
-            case R.id.nav_send_email:
-                doEmailTranscript();
-                return true;
-        }
-        return false;
+        /* NOTE: Resource IDs will be non-final in Android Gradle Plugin version 5.0,
+           avoid using them in switch case statements */
+        if (id == R.id.nav_window_list)
+            startActivityForResult(new Intent(this, WindowListActivity.class), REQUEST_CHOOSE_WINDOW);
+        else if (id == R.id.nav_preferences)
+            doPreferences();
+        else if (id == R.id.nav_special_keys)
+            doDocumentKeys();
+        else if (id == R.id.nav_action_help)
+            WrapOpenURL.launch(this, R.string.help_url);
+        else if (id == R.id.nav_send_email)
+            doEmailTranscript();
+        else
+            return false;
+        return true;
     }
 
     private void doCreateNewWindow() {
