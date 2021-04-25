@@ -16,17 +16,57 @@
 
 package com.termoneplus;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.termoneplus.utils.ScriptImporter;
 import com.termoneplus.utils.ThemeManager;
 import com.termoneplus.utils.WrapOpenURL;
 
+import jackpal.androidterm.emulatorview.TermSession;
+
 
 public class TermActivity extends jackpal.androidterm.Term {
+    private static final int REQUEST_PASTE_SCRIPT = 110;
+
+    private void doPasteScript() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
+                .setType("text/*")
+                .putExtra("CONTENT_TYPE", "text/x-shellscript");
+        try {
+            startActivityForResult(intent, REQUEST_PASTE_SCRIPT);
+        } catch (ActivityNotFoundException ignore) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    R.string.script_source_content_error, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP, 0, 0);
+            toast.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //noinspection SwitchStatementWithTooFewBranches
+        switch (requestCode) {
+            case REQUEST_PASTE_SCRIPT: {
+                if (resultCode != RESULT_OK) return;
+                if (data == null) return;
+                TermSession session = getCurrentTermSession();
+                if (session == null) return;
+                ScriptImporter.paste(this, data.getData(), session);
+                break;
+            }
+        }
+    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -53,6 +93,8 @@ public class TermActivity extends jackpal.androidterm.Term {
             doCopyAll();
         else if (id == R.id.session_paste)
             doPaste();
+        else if (id == R.id.session_paste_script)
+            doPasteScript();
         else if (id == R.id.session_send_cntr)
             getCurrentEmulatorView().sendControlKey();
         else if (id == R.id.session_send_fn)

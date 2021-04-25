@@ -36,6 +36,10 @@
     </group>
 
     <item
+        android:id="@+id/session_paste_script"
+        android:title="@string/paste_script"/>
+
+    <item
         android:id="@+id/session_send_cntr"
         android:title="@string/send_control_key"/>
 

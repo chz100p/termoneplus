@@ -377,7 +377,7 @@ public class Term extends AppCompatActivity
         return emulatorView;
     }
 
-    private TermSession getCurrentTermSession() {
+    protected TermSession getCurrentTermSession() {
         if (mTermService == null) return null;
 
         return mTermService.getSession(mViewFlipper.getDisplayedChild());

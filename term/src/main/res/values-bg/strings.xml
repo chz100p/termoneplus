@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (c) 2017-2020, Roumen Petrov <rpetrov@termoneplus.com>
+Copyright (c) 2017-2021, Roumen Petrov <rpetrov@termoneplus.com>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -62,6 +62,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="select_text">Избиране на текст</string>
     <string name="copy_all">Копиране на всичко</string>
     <string name="paste">Поставяне</string>
+    <string name="paste_script">Поставяне на скрипт</string>
     <string name="send_control_key">Изпращане на [Control]-клавиш</string>
     <string name="send_fn_key">Изпращане на [Fn]-клавиш</string>
 
@@ -202,6 +203,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="title_use_keyboard_shortcuts">Използване на бързи клавиши</string>
     <string name="use_keyboard_shortcuts_summary_on">Ctrl-Tab: превъртане на прозорци, Ctrl-Shift-N: нов прозорец, Ctrl-Shift-V: поставяне</string>
     <string name="use_keyboard_shortcuts_summary_off">Забрана на бързи клавиши</string>
+
+    <string name="script_import_error">Не може да се прочете избраният скрипт</string>
+    <string name="script_source_content_error">Липсва дейност, която да подаде съдържание, т.е. за действието \"Get Content\"</string>
 
     <string name="help">Помощ</string>
     <string name="activity_term_here_title">Терминал тук</string>

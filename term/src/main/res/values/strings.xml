@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  * Copyright (C) 2008 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,6 +53,7 @@
     <string name="select_text">Select text</string>
     <string name="copy_all">Copy all</string>
     <string name="paste">Paste</string>
+    <string name="paste_script">Paste Script</string>
     <string name="send_control_key">Send control key</string>
     <string name="send_fn_key">Send fn key</string>
 
@@ -198,6 +199,9 @@
     <string name="title_use_keyboard_shortcuts">Use Keyboard Shortcuts</string>
     <string name="use_keyboard_shortcuts_summary_on">Ctrl-Tab: cycle window, Ctrl-Shift-N: new window, Ctrl-Shift-V: paste.</string>
     <string name="use_keyboard_shortcuts_summary_off">Keyboard shortcuts disabled.</string>
+
+    <string name="script_import_error">Cannot read selected script</string>
+    <string name="script_source_content_error">No activity found to handle action \"Get Content\"</string>
 
     <string name="help">Help</string>
     <string name="help_url" translatable="false">https://termoneplus.com/app/help/index.html</string>
