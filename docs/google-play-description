@@ -10,7 +10,9 @@ Terminal emulates large subset of Digital Equipment Corporation VT-100 terminal 
 For instance supported terminal capabilities allows users fully to use textual interface in remote login programs (ssh connections).
 Terminal screen support color schemes like "Dark Pastels", "Solarized Light", "Solarized Dark", "Linux Console" and etc. Also user could chose size of text.
 
-Terminal session use "shell start-up script" where you could tune environment setting, add shell functions or command aliases.
+Terminal session use "shell start-up script" where you could tune environment setting, add shell functions or command aliases. In addition user could paste script obtained from content provider.
+
+If needed user could request "Wake" and "Wi-Fi" locks.
 
 "TermOne Plus" user interface is based on material design - icons, colors. It uses navigation drawer as main menu. Also user could switch between "Light" and "Dark" theme mode.
 
