@@ -24,6 +24,10 @@
 
 gradlew eol=lf
 
+# gradle wrapper properties is a text file
+
+gradle-wrapper.properties text
+
 # skeleton files must have end-of-line conversion as shell script, i.e. unix(LF)
 
 /**/assets/skel/* eol=lf
