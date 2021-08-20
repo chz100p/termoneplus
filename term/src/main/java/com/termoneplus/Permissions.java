@@ -30,11 +30,11 @@ public class Permissions {
 
     public static final int REQUEST_EXTERNAL_STORAGE = 101;
 
-    static String[] external_stogare_permissions = null;
+    static String[] external_storage_permissions = null;
 
 
     public static void constructExternalStoragePermissions() {
-        if (external_stogare_permissions != null) return;
+        if (external_storage_permissions != null) return;
 
         ArrayList<String> list = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /*API Level 16*/) {
@@ -43,13 +43,13 @@ public class Permissions {
         }
         list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-        external_stogare_permissions = list.toArray(new String[0]);
+        external_storage_permissions = list.toArray(new String[0]);
     }
 
     public static boolean permissionExternalStorage(AppCompatActivity activity) {
         boolean granted = true;
         constructExternalStoragePermissions();
-        for (String permission : external_stogare_permissions) {
+        for (String permission : external_storage_permissions) {
             int status = ActivityCompat.checkSelfPermission(activity, permission);
             if (status == PackageManager.PERMISSION_GRANTED) continue;
             granted = false;
@@ -61,7 +61,7 @@ public class Permissions {
     public static boolean shouldShowExternalStorageRationale(AppCompatActivity activity) {
         boolean flag = false;
         constructExternalStoragePermissions();
-        for (String permission : external_stogare_permissions) {
+        for (String permission : external_storage_permissions) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) {
                 flag = true;
                 break;
@@ -71,7 +71,7 @@ public class Permissions {
     }
 
     public static void requestPermissionExternalStorage(AppCompatActivity activity, int requestCode) {
-        ActivityCompat.requestPermissions(activity, external_stogare_permissions, requestCode);
+        ActivityCompat.requestPermissions(activity, external_storage_permissions, requestCode);
     }
 
     public static boolean isPermissionGranted(int[] grantResults) {
