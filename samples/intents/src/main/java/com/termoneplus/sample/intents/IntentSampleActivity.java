@@ -160,16 +160,21 @@ public class IntentSampleActivity extends AppCompatActivity {
                 REQUEST_PERMISSION_RUN_SCRIPT);
     }
 
+    private void onRequestWindowHandle(int resultCode, @Nullable Intent data) {
+        if (resultCode != RESULT_OK) return;
+        if (data == null) return;
+
+        mHandle = data.getStringExtra(ARGUMENT_WINDOW_HANDLE);
+        ((Button) findViewById(R.id.runScriptSaveWindow)).setText(
+                R.string.run_script_existing_window);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode != RESULT_OK) return;
-
-        if (requestCode == REQUEST_WINDOW_HANDLE && data != null) {
-            mHandle = data.getStringExtra(ARGUMENT_WINDOW_HANDLE);
-            ((Button) findViewById(R.id.runScriptSaveWindow)).setText(
-                    R.string.run_script_existing_window);
+        if (requestCode == REQUEST_WINDOW_HANDLE ) {
+            onRequestWindowHandle(resultCode, data);
         }
     }
 }

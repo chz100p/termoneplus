@@ -608,47 +608,47 @@ public class Term extends AppCompatActivity
             mViewFlipper.showNext();
     }
 
+    private void onRequestChooseWindow(int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK && data != null) {
+            int position = data.getIntExtra(Application.ARGUMENT_WINDOW_ID, -2);
+            if (position >= 0) {
+                // Switch windows after session list is in sync, not here
+                onResumeSelectWindow = position;
+            } else if (position == -1) {
+                // NOTE do not create new windows (view) here as launch of a
+                // activity cleans indirectly view flipper - see method onStop.
+                // Create only new session and then on service connection view
+                // flipper and etc. will be updated...
+                //doCreateNewWindow();
+                if (mTermService != null) {
+                    try {
+                        TermSession session = createTermSession();
+                        mTermService.addSession(session);
+                        onResumeSelectWindow = mTermService.getSessionCount() - 1;
+                    } catch (IOException e) {
+                        Toast.makeText(this.getApplicationContext(),
+                                "Failed to create a session", Toast.LENGTH_SHORT).show();
+                        onResumeSelectWindow = -1;
+                    }
+                } else
+                    onResumeSelectWindow = -1;
+            }
+        } else {
+            // Close the activity if user closed all sessions
+            // TODO the left path will be invoked when nothing happened, but this Activity was destroyed!
+            if (mTermService == null || mTermService.getSessionCount() == 0) {
+                mStopServiceOnFinish = true;
+                finish();
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //noinspection SwitchStatementWithTooFewBranches
-        switch (requestCode) {
-            case REQUEST_CHOOSE_WINDOW:
-                if (resultCode == RESULT_OK && data != null) {
-                    int position = data.getIntExtra(Application.ARGUMENT_WINDOW_ID, -2);
-                    if (position >= 0) {
-                        // Switch windows after session list is in sync, not here
-                        onResumeSelectWindow = position;
-                    } else if (position == -1) {
-                        // NOTE do not create new windows (view) here as launch of a
-                        // activity cleans indirectly view flipper - see method onStop.
-                        // Create only new session and then on service connection view
-                        // flipper and etc. will be updated...
-                        //doCreateNewWindow();
-                        if (mTermService != null) {
-                            try {
-                                TermSession session = createTermSession();
-                                mTermService.addSession(session);
-                                onResumeSelectWindow = mTermService.getSessionCount() - 1;
-                            } catch (IOException e) {
-                                Toast.makeText(this.getApplicationContext(),
-                                        "Failed to create a session", Toast.LENGTH_SHORT).show();
-                                onResumeSelectWindow = -1;
-                            }
-                        } else
-                            onResumeSelectWindow = -1;
-                    }
-                } else {
-                    // Close the activity if user closed all sessions
-                    // TODO the left path will be invoked when nothing happened, but this Activity was destroyed!
-                    if (mTermService == null || mTermService.getSessionCount() == 0) {
-                        mStopServiceOnFinish = true;
-                        finish();
-                    }
-                }
-                //noinspection UnnecessaryReturnStatement
-                return;
+        if (requestCode == REQUEST_CHOOSE_WINDOW) {
+            onRequestChooseWindow(resultCode, data);
         }
     }
 

@@ -38,6 +38,7 @@ import com.termoneplus.utils.TextIcon;
 
 import java.security.GeneralSecurityException;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
@@ -67,6 +68,39 @@ public class AddShortcut extends AppCompatActivity {
             makeShortcut();
         else
             finish();
+    }
+
+    private void onRequestFindCommand(int resultCode, @Nullable Intent data) {
+        if (resultCode != RESULT_OK) return;
+        if (data == null) return;
+
+        {
+            Uri uri = data.getData();
+            if (uri == null) return;
+            path = uri.getPath();
+        }
+        if (path == null) {
+            finish();
+            return;
+        }
+
+        preferences.edit().putString("lastPath", path).commit();
+
+        {
+            EditText cmd_path = shortcut_view.findViewById(R.id.cmd_path);
+            cmd_path.setText(path);
+        }
+
+        String name = path.replaceAll(".*/", "");
+
+        {
+            EditText cmd_name = shortcut_view.findViewById(R.id.cmd_name);
+            if (cmd_name.getText().toString().equals(""))
+                cmd_name.setText(name);
+        }
+
+        if (iconText[0] != null && iconText[0].equals(""))
+            iconText[0] = name;
     }
 
     private void makeShortcut() {
@@ -202,41 +236,8 @@ public class AddShortcut extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch (requestCode) {
-            case REQUEST_FIND_COMMAND: {
-                if (resultCode != RESULT_OK) break;
-                if (data == null) break;
-
-                {
-                    Uri uri = data.getData();
-                    if (uri == null) break;
-                    path = uri.getPath();
-                }
-                if (path == null) {
-                    finish();
-                    break;
-                }
-
-                preferences.edit().putString("lastPath", path).commit();
-
-                {
-                    EditText cmd_path = shortcut_view.findViewById(R.id.cmd_path);
-                    cmd_path.setText(path);
-                }
-
-                String name = path.replaceAll(".*/", "");
-
-                {
-                    EditText cmd_name = shortcut_view.findViewById(R.id.cmd_name);
-                    if (cmd_name.getText().toString().equals(""))
-                        cmd_name.setText(name);
-                }
-
-                if (iconText[0] != null && iconText[0].equals(""))
-                    iconText[0] = name;
-
-                break;
-            }
+        if (requestCode == REQUEST_FIND_COMMAND) {
+            onRequestFindCommand(resultCode, data);
         }
     }
 }

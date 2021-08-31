@@ -30,6 +30,7 @@ import com.termoneplus.utils.ScriptImporter;
 import com.termoneplus.utils.ThemeManager;
 import com.termoneplus.utils.WrapOpenURL;
 
+import androidx.annotation.Nullable;
 import jackpal.androidterm.emulatorview.TermSession;
 
 
@@ -52,19 +53,21 @@ public class TermActivity extends jackpal.androidterm.Term {
         }
     }
 
+    private void onRequestPasteScript(int resultCode, @Nullable Intent data) {
+        if (resultCode != RESULT_OK) return;
+        if (data == null) return;
+
+        TermSession session = getCurrentTermSession();
+        if (session == null) return;
+        ScriptImporter.paste(this, data.getData(), session);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //noinspection SwitchStatementWithTooFewBranches
-        switch (requestCode) {
-            case REQUEST_PASTE_SCRIPT: {
-                if (resultCode != RESULT_OK) return;
-                if (data == null) return;
-                TermSession session = getCurrentTermSession();
-                if (session == null) return;
-                ScriptImporter.paste(this, data.getData(), session);
-                break;
-            }
+
+        if (requestCode == REQUEST_PASTE_SCRIPT) {
+            onRequestPasteScript(resultCode, data);
         }
     }
 
