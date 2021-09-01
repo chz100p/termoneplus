@@ -30,19 +30,26 @@ import com.termoneplus.utils.ScriptImporter;
 import com.termoneplus.utils.ThemeManager;
 import com.termoneplus.utils.WrapOpenURL;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import jackpal.androidterm.emulatorview.TermSession;
 
 
 public class TermActivity extends jackpal.androidterm.Term {
-    private static final int REQUEST_PASTE_SCRIPT = 110;
+    private final ActivityResultLauncher<Intent> request_paste_script =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> onRequestPasteScript(result.getResultCode(), result.getData())
+            );
+
 
     private void doPasteScript() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT)
                 .setType("text/*")
                 .putExtra("CONTENT_TYPE", "text/x-shellscript");
         try {
-            startActivityForResult(intent, REQUEST_PASTE_SCRIPT);
+            request_paste_script.launch(intent);
         } catch (ActivityNotFoundException ignore) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     R.string.script_source_content_error, Toast.LENGTH_LONG);
@@ -60,15 +67,6 @@ public class TermActivity extends jackpal.androidterm.Term {
         TermSession session = getCurrentTermSession();
         if (session == null) return;
         ScriptImporter.paste(this, data.getData(), session);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_PASTE_SCRIPT) {
-            onRequestPasteScript(resultCode, data);
-        }
     }
 
     @Override

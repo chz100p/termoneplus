@@ -38,6 +38,8 @@ import com.termoneplus.utils.TextIcon;
 
 import java.security.GeneralSecurityException;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +51,11 @@ import jackpal.androidterm.util.ShortcutEncryption;
 
 
 public class AddShortcut extends AppCompatActivity {
-    private final int REQUEST_FIND_COMMAND = 101;
+    private final ActivityResultLauncher<Intent> request_find_command =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> onRequestFindCommand(result.getResultCode(), result.getData())
+            );
 
     private View shortcut_view;
     private SharedPreferences preferences;
@@ -134,7 +140,7 @@ public class AddShortcut extends AppCompatActivity {
                         pickerIntent.putExtra("COMMAND_PATH", lastPath);
 
                     try {
-                        startActivityForResult(pickerIntent, REQUEST_FIND_COMMAND);
+                        request_find_command.launch(pickerIntent);
                     } catch (Exception e) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Failed to launch pick action!", Toast.LENGTH_LONG);
@@ -231,13 +237,5 @@ public class AddShortcut extends AppCompatActivity {
 
         setResult(RESULT_OK, wrapper);
         finish();
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_FIND_COMMAND) {
-            onRequestFindCommand(resultCode, data);
-        }
     }
 }

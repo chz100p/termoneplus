@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +31,16 @@ public class IntentSampleActivity extends AppCompatActivity {
     private static final String PERMISSION_RUN_SCRIPT = BuildConfig.TERM_APPLICATION_ID + ".permission.RUN_SCRIPT";
     private static final int REQUEST_PERMISSION_RUN_SCRIPT = 101;
 
-    private static final int REQUEST_WINDOW_HANDLE = 1;
+    private final ActivityResultLauncher<Intent> request_window_handle =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> onRequestWindowHandle(result.getResultCode(), result.getData())
+            );
+
     private String mHandle;
 
     private View main_layout;
+
 
     /**
      * Called when the activity is first created.
@@ -95,7 +103,7 @@ public class IntentSampleActivity extends AppCompatActivity {
                You can compare it against an existing saved handle to
                determine whether or not a new window was opened */
             try {
-                startActivityForResult(intent, REQUEST_WINDOW_HANDLE);
+                request_window_handle.launch(intent);
             } catch (SecurityException e) {
                 errorPermissionDenial(v);
             } catch (ActivityNotFoundException e) {
@@ -167,14 +175,5 @@ public class IntentSampleActivity extends AppCompatActivity {
         mHandle = data.getStringExtra(ARGUMENT_WINDOW_HANDLE);
         ((Button) findViewById(R.id.runScriptSaveWindow)).setText(
                 R.string.run_script_existing_window);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_WINDOW_HANDLE ) {
-            onRequestWindowHandle(resultCode, data);
-        }
     }
 }

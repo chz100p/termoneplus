@@ -67,6 +67,8 @@ import com.termoneplus.utils.WrapOpenURL;
 
 import java.io.IOException;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -86,11 +88,17 @@ import jackpal.androidterm.util.TermSettings;
  */
 public class Term extends AppCompatActivity
         implements UpdateCallback, SharedPreferences.OnSharedPreferenceChangeListener {
-    public static final int REQUEST_CHOOSE_WINDOW = 1;
     /**
      * The name of the ViewFlipper in the resources.
      */
     private static final int VIEW_FLIPPER = R.id.view_flipper;
+
+    private final ActivityResultLauncher<Intent> request_choose_window =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> onRequestChooseWindow(result.getResultCode(), result.getData())
+            );
+
     /**
      * The ViewFlipper which holds the collection of EmulatorView widgets.
      */
@@ -545,7 +553,7 @@ public class Term extends AppCompatActivity
         /* NOTE: Resource IDs will be non-final in Android Gradle Plugin version 5.0,
            avoid using them in switch case statements */
         if (id == R.id.nav_window_list)
-            startActivityForResult(new Intent(this, WindowListActivity.class), REQUEST_CHOOSE_WINDOW);
+            request_choose_window.launch(new Intent(this, WindowListActivity.class));
         else if (id == R.id.nav_preferences)
             doPreferences();
         else if (id == R.id.nav_special_keys)
@@ -640,15 +648,6 @@ public class Term extends AppCompatActivity
                 mStopServiceOnFinish = true;
                 finish();
             }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CHOOSE_WINDOW) {
-            onRequestChooseWindow(resultCode, data);
         }
     }
 
