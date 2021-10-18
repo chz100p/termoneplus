@@ -7,7 +7,8 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.2'
+        // plugin version 7.* before 7.0.2 fail to pack native libraries!
+        classpath 'com.android.tools.build:gradle:7.0.3'
     }
 }
 
@@ -22,6 +23,7 @@ allprojects {
         compileSdkVersion = 30
         targetSdkVersion = 30
         minSdkVersion = 14
+        ndkVersion = '21.4.7075529'
     }
 }
 

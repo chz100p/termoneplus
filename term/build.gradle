@@ -5,6 +5,7 @@ plugins {
 android {
     compileSdkVersion project.ext.compileSdkVersion
     buildToolsVersion project.ext.buildToolsVersion
+    ndkVersion project.ext.ndkVersion
     defaultConfig {
         applicationId "com.termoneplus"
         minSdkVersion project.ext.minSdkVersion
