@@ -20,8 +20,8 @@ allprojects {
         google()
     }
     project.ext {
-        compileSdkVersion = 30
-        targetSdkVersion = 30
+        compileSdkVersion = 31
+        targetSdkVersion = 31
         minSdkVersion = 14
         ndkVersion = '21.4.7075529'
     }
