@@ -776,6 +776,7 @@ public class Term extends AppCompatActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        System.err.println("TRACE Term.onRequestPermissionsResult()  requestCode: " + requestCode);
         switch (requestCode) {
             case Permissions.REQUEST_EXTERNAL_STORAGE: {
                 if (Permissions.isPermissionGranted(grantResults)) {
