@@ -17,16 +17,11 @@
 package com.termoneplus;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.Settings;
 
 import java.util.ArrayList;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -54,6 +49,7 @@ public class Permissions {
         external_storage_permissions = list.toArray(new String[0]);
     }
 
+    /*
     @RequiresApi(30)
     private static void requestPermissionAllFilesAccess(AppCompatActivity activity) {
         try {
@@ -71,10 +67,13 @@ public class Permissions {
         } catch (Exception ignore) {
         }
     }
+    */
 
     public static boolean permissionExternalStorage(AppCompatActivity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
-            return Environment.isExternalStorageManager();
+        // Looks like there is no way native file management to pass
+        // crappy Google policy!
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
+        //    return Environment.isExternalStorageManager();
 
         constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
@@ -86,8 +85,8 @@ public class Permissions {
     }
 
     public static boolean shouldShowExternalStorageRationale(AppCompatActivity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
-            return true;
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
+        //    return true;
 
         constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
@@ -98,10 +97,10 @@ public class Permissions {
     }
 
     public static void requestPermissionExternalStorage(AppCompatActivity activity, int requestCode) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
-            requestPermissionAllFilesAccess(activity);
-            return;
-        }
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
+        //    requestPermissionAllFilesAccess(activity);
+        //    return;
+        //}
         ActivityCompat.requestPermissions(activity, external_storage_permissions, requestCode);
     }
 
