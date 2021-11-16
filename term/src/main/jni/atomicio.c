@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ atomicio(atomicio_f f, int fd, void *_buf, size_t n) {
                     (void) poll(&pfd, 1, -1);
                     continue;
                 }
-                return 0;
+                return pos;
             case 0:
                 errno = EPIPE;
                 return pos;
