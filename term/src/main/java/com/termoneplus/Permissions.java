@@ -19,9 +19,11 @@ package com.termoneplus;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 
 import java.util.ArrayList;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -30,6 +32,7 @@ public class Permissions {
     /* MANAGE_EXTERNAL_STORAGE permission:
      * - https://stackoverflow.com/questions/65876736/how-do-you-request-manage-external-storage-permission-in-android
      * - https://developer.android.com/training/data-storage/manage-all-files
+     * Remark: Looks like there is no way native file management to pass Google policy!
      */
     public static final int REQUEST_EXTERNAL_STORAGE = 101;
 
@@ -49,9 +52,9 @@ public class Permissions {
         external_storage_permissions = list.toArray(new String[0]);
     }
 
-    /*
     @RequiresApi(30)
     private static void requestPermissionAllFilesAccess(AppCompatActivity activity) {
+        /* Remark: uncomment if permission MANAGE_EXTERNAL_STORAGE is accepted.
         try {
             Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
             Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
@@ -66,14 +69,12 @@ public class Permissions {
             activity.startActivity(intent);
         } catch (Exception ignore) {
         }
+        */
     }
-    */
 
     public static boolean permissionExternalStorage(AppCompatActivity activity) {
-        // Looks like there is no way native file management to pass
-        // crappy Google policy!
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
-        //    return Environment.isExternalStorageManager();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
+            return Environment.isExternalStorageManager();
 
         constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
@@ -85,8 +86,9 @@ public class Permissions {
     }
 
     public static boolean shouldShowExternalStorageRationale(AppCompatActivity activity) {
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
-        //    return true;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
+            /* true if permission MANAGE_EXTERNAL_STORAGE is in use */
+            return false;
 
         constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
@@ -97,10 +99,10 @@ public class Permissions {
     }
 
     public static void requestPermissionExternalStorage(AppCompatActivity activity, int requestCode) {
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
-        //    requestPermissionAllFilesAccess(activity);
-        //    return;
-        //}
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
+            requestPermissionAllFilesAccess(activity);
+            return;
+        }
         ActivityCompat.requestPermissions(activity, external_storage_permissions, requestCode);
     }
 
