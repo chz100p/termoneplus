@@ -47,6 +47,7 @@
     <string name="select_text">Wybierz tekst</string>
     <string name="copy_all">Kopiuj wszystko</string>
     <string name="paste">Wklej</string>
+    <string name="paste_script">Wklej skrypt</string>
     <string name="send_control_key">Wyślij przycisk control</string>
     <string name="send_fn_key">Wyślij przycisk fn</string>
 
@@ -183,6 +184,8 @@
     <string name="title_use_keyboard_shortcuts">Używaj skrótów klawiaturowych</string>
     <string name="use_keyboard_shortcuts_summary_on">Ctrl-Tab: przełącz okno, Ctrl-Shift-N: nowe okno, Ctrl-Shift-V: wklej.</string>
     <string name="use_keyboard_shortcuts_summary_off">Skróty klawiaturowe wyłączone.</string>
+
+    <string name="script_import_error">Nie można odczytać wybranego skryptu</string>
 
     <string name="help">Pomoc</string>
     <string name="activity_term_here_title">Terminal tutaj</string>
