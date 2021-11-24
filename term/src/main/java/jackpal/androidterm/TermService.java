@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.ApplicationInfo;
@@ -39,6 +40,9 @@ import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+
 import com.termoneplus.Application;
 import com.termoneplus.R;
 import com.termoneplus.TermActivity;
@@ -46,8 +50,6 @@ import com.termoneplus.services.CommandService;
 
 import java.util.UUID;
 
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 import jackpal.androidterm.emulatorview.TermSession;
 import jackpal.androidterm.libtermexec.v1.ITerminal;
 import jackpal.androidterm.util.SessionList;
@@ -58,7 +60,7 @@ public class TermService extends Service {
     private static final int RUNNING_NOTIFICATION = 1;
 
     private final IBinder mTSBinder = new TSBinder();
-    private SessionList mTermSessions = new SessionList();
+    private final SessionList mTermSessions = new SessionList();
     private CommandService command_service;
 
     @Override
@@ -142,7 +144,7 @@ public class TermService extends Service {
 
         Intent notifyIntent = new Intent(this, TermActivity.class);
         notifyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, 0);
+        PendingIntent pendingIntent = ActivityPendingIntent.get(this, 0, notifyIntent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,
                 Application.NOTIFICATION_CHANNEL_SESSIONS)
@@ -185,6 +187,20 @@ public class TermService extends Service {
     }
 
 
+    private static class ActivityPendingIntent {
+        private static PendingIntent get(Context context, int requestCode, Intent intent, int flags) {
+            /* Notes:
+            It target is Android API Level 31 pending intents must set explicitly one of "mutable"
+            flags. Versions before assume mutable by default.
+            Let force immutable value on first available version.
+            */
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M /*API level 23*/)
+                flags |= PendingIntent.FLAG_IMMUTABLE;
+            return PendingIntent.getActivity(context, requestCode, intent, flags);
+        }
+    }
+
+
     public class TSBinder extends Binder {
         public TermService getService() {
             Log.i("TermService", "Activity binding to service");
@@ -206,7 +222,7 @@ public class TermService extends Service {
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     .putExtra(Application.ARGUMENT_TARGET_WINDOW, sessionHandle);
 
-            final PendingIntent result = PendingIntent.getActivity(getApplicationContext(), sessionHandle.hashCode(),
+            final PendingIntent result = ActivityPendingIntent.get(getApplicationContext(), sessionHandle.hashCode(),
                     switchIntent, 0);
 
             final PackageManager pm = getPackageManager();
