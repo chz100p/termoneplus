@@ -23,22 +23,27 @@
         android:name="${applicationId}.permission.RUN_SCRIPT"
         android:description="@string/permdesc_run_script"
         android:label="@string/perm_run_script"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:permissionGroup="${applicationId}.permission-group.TERMINAL"
         android:protectionLevel="dangerous"/>
     <!-- deprecated: pending removal -->
     <permission
         android:name="${applicationId}.permission.APPEND_TO_PATH"
         android:description="@string/permdesc_append_to_path"
         android:label="@string/perm_append_to_path"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:permissionGroup="${applicationId}.permission-group.TERMINAL"
         android:protectionLevel="signature"/>
     <!-- deprecated: pending removal -->
     <permission
         android:name="${applicationId}.permission.PREPEND_TO_PATH"
         android:description="@string/permdesc_prepend_to_path"
         android:label="@string/perm_prepend_to_path"
-        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:permissionGroup="${applicationId}.permission-group.TERMINAL"
         android:protectionLevel="signature"/>
+
+    <permission-group
+        android:name="${applicationId}.permission-group.TERMINAL"
+        android:description="@string/permdesc_grp_term"
+        android:label="@string/perm_grp_term"/>
 
     <application
         android:name=".Application"

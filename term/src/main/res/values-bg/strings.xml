@@ -182,6 +182,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <string name="confirm_window_close_message">Да се затвори ли този прозорец?</string>
 
+    <string name="perm_grp_term">Позволения на терминалната програма</string>
+    <string name="permdesc_grp_term">Използват се за достъп до възможности на терминалната програма.</string>
+
     <string name="perm_run_script">Изпълнение на произволна команда в терминалната програма</string>
     <string name="permdesc_run_script">Разрешаване на приложението на отворя нови прозорци в терминалната програма за Android и в тази прозорци, да изпълнява команди с всички права позволени на терминалната програма за Android, включващи достъп до мрежата и вашата карта памет (SD)</string>
     <string name="perm_append_to_path">Добавяне на команди към терминалната програма</string>
