@@ -98,7 +98,12 @@ public class PathSettings {
         StringBuilder new_path = new StringBuilder(path.length());
         for (String entry : entries) {
             File dir = new File(entry);
-            if (dir.isDirectory() && dir.canExecute()) {
+            try {
+                if (!dir.isDirectory()) continue;
+            } catch (SecurityException ignore) {
+                continue;
+            }
+            if (dir.canExecute()) {
                 new_path.append(entry);
                 new_path.append(File.pathSeparator);
             }
