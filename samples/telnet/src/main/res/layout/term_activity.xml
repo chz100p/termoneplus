@@ -5,7 +5,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <jackpal.androidterm.emulatorview.EmulatorView
+    <!-- use project class only to make lint happy -->
+    <com.termoneplus.sample.telnet.TelnetView
         android:id="@+id/emulatorView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
