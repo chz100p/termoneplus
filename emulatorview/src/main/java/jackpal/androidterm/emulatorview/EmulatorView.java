@@ -49,6 +49,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Hashtable;
 
+import androidx.annotation.RequiresApi;
 import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 import jackpal.androidterm.emulatorview.compat.Patterns;
 
@@ -436,8 +437,20 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      */
     public EmulatorView(Context context, TermSession session, DisplayMetrics metrics) {
         super(context);
+        commonConstructor(context);
         attachSession(context, session);
         setDensity(metrics);
+    }
+
+    /**
+     * Constructor called when inflating this view from XML.
+     * <p>
+     * You should call {@link #attachSession attachSession} and {@link
+     * #setDensity setDensity} before using an <code>EmulatorView</code> created
+     * using this constructor.
+     */
+    public EmulatorView(Context context) {
+        super(context);
         commonConstructor(context);
     }
 
@@ -463,6 +476,21 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      */
     public EmulatorView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        commonConstructor(context);
+    }
+
+    /**
+     * Constructor called when inflating this view from XML with a
+     * default style set.
+     * <p>
+     * You should call {@link #attachSession attachSession} and {@link
+     * #setDensity setDensity} before using an <code>EmulatorView</code> created
+     * using this constructor.
+     * Requires API level 21.
+     */
+    @RequiresApi(21)
+    public EmulatorView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         commonConstructor(context);
     }
 
