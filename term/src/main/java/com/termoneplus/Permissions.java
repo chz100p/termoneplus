@@ -38,19 +38,24 @@ public class Permissions {
 
     static String[] external_storage_permissions = null;
 
-
-    private static void constructExternalStoragePermissions() {
-        if (external_storage_permissions != null) return;
-
+    static {
         ArrayList<String> list = new ArrayList<>();
+
+        // On Android 11 (API Level 30) we should use permission MANAGE_EXTERNAL_STORAGE
+        // but there is no way terminal application to pass Google policy requirement.
+        // Android 10 (API Level 29) with android:requestLegacyExternalStorage set
+        // is last that could use permission WRITE_EXTERNAL_STORAGE.
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q /*API Level 29*/)
+            list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN /*API Level 16*/) {
-            // added in API level 16
+            // implicitly granted if WRITE_EXTERNAL_STORAGE is requested
             list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
-        list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         external_storage_permissions = list.toArray(new String[0]);
     }
+
 
     @RequiresApi(30)
     private static void requestPermissionAllFilesAccess(AppCompatActivity activity) {
@@ -76,7 +81,6 @@ public class Permissions {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/)
             return Environment.isExternalStorageManager();
 
-        constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
             int status = ActivityCompat.checkSelfPermission(activity, permission);
             if (status != PackageManager.PERMISSION_GRANTED)
@@ -90,7 +94,6 @@ public class Permissions {
             /* true if permission MANAGE_EXTERNAL_STORAGE is in use */
             return false;
 
-        constructExternalStoragePermissions();
         for (String permission : external_storage_permissions) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission))
                 return true;
