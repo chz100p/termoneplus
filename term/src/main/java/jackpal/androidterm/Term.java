@@ -758,20 +758,7 @@ public class Term extends AppCompatActivity
         if (Permissions.permissionExternalStorage(this))
             return;
 
-        if (Permissions.shouldShowExternalStorageRationale(this)) {
-            Snackbar.make(
-                    mViewFlipper,
-                    R.string.message_external_storage_rationale,
-                    Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok,
-                            view -> Permissions.requestPermissionExternalStorage(
-                                    this,
-                                    Permissions.REQUEST_EXTERNAL_STORAGE))
-                    .show();
-        } else
-            Permissions.requestPermissionExternalStorage(
-                    this,
-                    Permissions.REQUEST_EXTERNAL_STORAGE);
+        Permissions.requestExternalStorage(this, mViewFlipper, Permissions.REQUEST_EXTERNAL_STORAGE);
     }
 
     @Override

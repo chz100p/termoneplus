@@ -19,6 +19,9 @@ package com.termoneplus;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.view.View;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -28,8 +31,7 @@ import androidx.core.app.ActivityCompat;
 
 public class Permissions {
     public static final int REQUEST_EXTERNAL_STORAGE = 101;
-
-    static String[] external_storage_permissions = null;
+    static final String[] external_storage_permissions;
 
     static {
         ArrayList<String> list = new ArrayList<>();
@@ -46,6 +48,7 @@ public class Permissions {
             list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
+        // to use more simple checks construct a list, even empty
         external_storage_permissions = list.toArray(new String[0]);
     }
 
@@ -56,10 +59,10 @@ public class Permissions {
             if (status != PackageManager.PERMISSION_GRANTED)
                 return false;
         }
-        return true;
+        return external_storage_permissions.length > 0;
     }
 
-    public static boolean shouldShowExternalStorageRationale(AppCompatActivity activity) {
+    private static boolean shouldShowExternalStorageRationale(AppCompatActivity activity) {
         for (String permission : external_storage_permissions) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission))
                 return true;
@@ -67,8 +70,22 @@ public class Permissions {
         return false;
     }
 
-    public static void requestPermissionExternalStorage(AppCompatActivity activity, int requestCode) {
+    private static void requestPermissionExternalStorage(AppCompatActivity activity, int requestCode) {
         ActivityCompat.requestPermissions(activity, external_storage_permissions, requestCode);
+    }
+
+    public static void requestExternalStorage(AppCompatActivity activity, View view, int requestCode) {
+        // We must request at least one permission!
+        if (external_storage_permissions.length == 0) return;
+        if (shouldShowExternalStorageRationale(activity))
+            Snackbar.make(view,
+                    R.string.message_external_storage_rationale,
+                    Snackbar.LENGTH_INDEFINITE)
+                    .setAction(android.R.string.ok,
+                            v -> requestPermissionExternalStorage(activity, requestCode))
+                    .show();
+        else
+            requestPermissionExternalStorage(activity, requestCode);
     }
 
     public static boolean isPermissionGranted(int[] grantResults) {
