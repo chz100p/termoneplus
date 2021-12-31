@@ -78,7 +78,7 @@
             android:excludeFromRecents="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.termoneplus.OPEN_NEW_WINDOW"/>
+                <action android:name="${applicationId}.OPEN_NEW_WINDOW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -104,7 +104,7 @@
             android:exported="true"
             android:permission="${applicationId}.permission.RUN_SCRIPT">
             <intent-filter>
-                <action android:name="com.termoneplus.RUN_SCRIPT"/>
+                <action android:name="${applicationId}.RUN_SCRIPT"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -114,7 +114,7 @@
             android:excludeFromRecents="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.termoneplus.RUN_SHORTCUT"/>
+                <action android:name="${applicationId}.RUN_SHORTCUT"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

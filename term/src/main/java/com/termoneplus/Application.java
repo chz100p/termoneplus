@@ -39,10 +39,11 @@ public class Application extends android.app.Application {
 
     public static final String NOTIFICATION_CHANNEL_SESSIONS = BuildConfig.APPLICATION_ID + ".sessions";
 
-    public static final String ACTION_OPEN_NEW_WINDOW = "com.termoneplus.OPEN_NEW_WINDOW";
+    public static final String ACTION_OPEN_NEW_WINDOW = BuildConfig.APPLICATION_ID + ".OPEN_NEW_WINDOW";
+    public static final String ACTION_RUN_SHORTCUT = BuildConfig.APPLICATION_ID + ".RUN_SHORTCUT";
+    public static final String ACTION_RUN_SCRIPT = BuildConfig.APPLICATION_ID + ".RUN_SCRIPT";
+    // internal
     public static final String ACTION_SWITCH_WINDOW = "com.termoneplus.SWITCH_WINDOW";
-    public static final String ACTION_RUN_SHORTCUT = "com.termoneplus.RUN_SHORTCUT";
-    public static final String ACTION_RUN_SCRIPT = "com.termoneplus.RUN_SCRIPT";
 
     public static final String ARGUMENT_TARGET_WINDOW = "target_window";
     public static final String ARGUMENT_WINDOW_ID = "window_id";

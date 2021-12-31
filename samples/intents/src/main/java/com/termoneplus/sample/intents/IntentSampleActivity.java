@@ -22,8 +22,8 @@ import androidx.core.app.ActivityCompat;
 
 public class IntentSampleActivity extends AppCompatActivity {
 
-    private static final String ACTION_OPEN_NEW_WINDOW = "com.termoneplus.OPEN_NEW_WINDOW";
-    private static final String ACTION_RUN_SCRIPT = "com.termoneplus.RUN_SCRIPT";
+    private static final String ACTION_OPEN_NEW_WINDOW = BuildConfig.TERM_APPLICATION_ID + ".OPEN_NEW_WINDOW";
+    private static final String ACTION_RUN_SCRIPT = BuildConfig.TERM_APPLICATION_ID + ".RUN_SCRIPT";
 
     private static final String ARGUMENT_WINDOW_HANDLE = "com.termoneplus.WindowHandle";
     private static final String ARGUMENT_SHELL_COMMAND = "com.termoneplus.Command";
