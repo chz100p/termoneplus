@@ -31,9 +31,9 @@ import jackpal.androidterm.emulatorview.UpdateCallback;
 @SuppressWarnings("serial")
 public class SessionList extends ArrayList<TermSession>
 {
-    LinkedList<UpdateCallback> callbacks = new LinkedList<>();
-    LinkedList<UpdateCallback> titleChangedListeners = new LinkedList<>();
-    UpdateCallback mTitleChangedListener = this::notifyTitleChanged;
+    final LinkedList<UpdateCallback> callbacks = new LinkedList<>();
+    final LinkedList<UpdateCallback> titleChangedListeners = new LinkedList<>();
+    final UpdateCallback mTitleChangedListener = this::notifyTitleChanged;
 
     public SessionList() {
         super();

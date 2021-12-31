@@ -124,7 +124,7 @@ public class Term extends AppCompatActivity
     /**
      * Intercepts keys before the view/terminal gets it.
      */
-    private View.OnKeyListener mKeyListener = new View.OnKeyListener() {
+    private final View.OnKeyListener mKeyListener = new View.OnKeyListener() {
         public boolean onKey(View v, int keyCode, KeyEvent event) {
             return backkeyInterceptor(keyCode, event) || keyboardShortcuts(keyCode, event);
         }
@@ -975,7 +975,7 @@ public class Term extends AppCompatActivity
     }
 
     private class EmulatorViewGestureListener extends SimpleOnGestureListener {
-        private EmulatorView view;
+        private final EmulatorView view;
 
         public EmulatorViewGestureListener(EmulatorView view) {
             this.view = view;
