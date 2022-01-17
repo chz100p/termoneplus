@@ -22,6 +22,15 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
+    <!-- development/system permissions, sample:
+    $ adb shell pm grant com.termoneplus android.permission.DUMP
+    -->
+    <uses-permission
+        android:name="android.permission.DUMP"
+        tools:ignore="ProtectedPermissions">
+        <!-- https://developer.android.com/studio/command-line/dumpsys -->
+    </uses-permission>
+
     <permission
         android:name="${applicationId}.permission.RUN_SCRIPT"
         android:description="@string/permdesc_run_script"
