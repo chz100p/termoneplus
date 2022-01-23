@@ -214,14 +214,21 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.4"/>
-        <!-- NOTE: Samsung DEX Version >= 3.0. DeX Dual Mode support.
-        Declares keepalive in the android manifest file, to avoid the process being killed
-        when switching between mobile and Samsung DeX. In addition, set the android:configChanges
-        to avoid restarting the app during the switching process.
-         -->
+        <!-- https://developer.samsung.com/samsung-dex/modify-optimizing.html
+        Declares keepalive in the android manifest file, to avoid the process being
+        killed when switching between mobile and Samsung DeX. In addition, set the
+        android:configChanges to avoid restarting the app during the switching process.
+        -->
         <meta-data
             android:name="com.samsung.android.multidisplay.keep_process_alive"
-            android:value="true"/>
+            android:value="true">
+            <!-- Version >= 3.0. DeX Dual Mode support -->
+        </meta-data>
+        <meta-data
+            android:name="com.samsung.android.keepalive.density"
+            android:value="true">
+            <!-- Version < 3.0. DeX Mode and Screen Mirroring support -->
+        </meta-data>
 
     </application>
 
