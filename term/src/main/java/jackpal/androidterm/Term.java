@@ -74,7 +74,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceManager;
 import jackpal.androidterm.compat.PathCollector;
-import jackpal.androidterm.compat.PathSettings;
 import jackpal.androidterm.emulatorview.EmulatorView;
 import jackpal.androidterm.emulatorview.TermSession;
 import jackpal.androidterm.emulatorview.UpdateCallback;
@@ -105,7 +104,7 @@ public class Term extends AppCompatActivity
     private TermViewFlipper mViewFlipper;
     private SessionList mTermSessions;
     private TermSettings mSettings;
-    private PathSettings path_settings;
+    private PathCollector path_collector;
     private boolean mAlreadyStarted = false;
     private boolean mStopServiceOnFinish = false;
     private Intent TSIntent;
@@ -224,7 +223,7 @@ public class Term extends AppCompatActivity
         }
 
         mSettings.readPrefs(this, sharedPreferences);
-        path_settings.extractPreferences(sharedPreferences);
+        path_collector.extractPreferences(sharedPreferences);
     }
 
     @Override
@@ -238,12 +237,11 @@ public class Term extends AppCompatActivity
             onNewIntent(getIntent());
 
         mSettings = new TermSettings(this);
-        path_settings = new PathSettings(this);
 
         mActionBarMode = mSettings.actionBarMode();
 
         path_collected = false;
-        PathCollector path_collector = new PathCollector(this, path_settings);
+        path_collector = new PathCollector(this);
         path_collector.setOnPathsReceivedListener(() -> {
             path_collected = true;
             populateSessions();

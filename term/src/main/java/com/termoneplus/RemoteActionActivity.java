@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2021 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,13 +27,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import jackpal.androidterm.TermService;
 import jackpal.androidterm.compat.PathCollector;
-import jackpal.androidterm.compat.PathSettings;
 import jackpal.androidterm.util.TermSettings;
 
 
 public class RemoteActionActivity extends AppCompatActivity {
     protected TermSettings mSettings;
-    protected PathSettings path_settings;
 
     private boolean path_collected = false;
     private TermService term_service = null;
@@ -70,8 +68,7 @@ public class RemoteActionActivity extends AppCompatActivity {
         }
 
         mSettings = new TermSettings(this);
-        path_settings = new PathSettings(this);
-        PathCollector path_collector = new PathCollector(this, path_settings);
+        PathCollector path_collector = new PathCollector(this);
         path_collector.setOnPathsReceivedListener(() -> {
             path_collected = true;
 

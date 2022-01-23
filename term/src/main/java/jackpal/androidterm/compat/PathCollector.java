@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2017-2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package jackpal.androidterm.compat;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.termoneplus.BuildConfig;
@@ -47,12 +48,13 @@ public class PathCollector {
     private static final String PERMISSION_PATH_APPEND_BROADCAST = BuildConfig.APPLICATION_ID + ".permission.APPEND_TO_PATH";
     private static final String PERMISSION_PATH_PREPEND_BROADCAST = BuildConfig.APPLICATION_ID + ".permission.PREPEND_TO_PATH";
 
+    private final PathSettings settings;
     private int pending;
     private OnPathsReceivedListener callback;
 
-    public PathCollector(AppCompatActivity context, PathSettings settings) {
+    public PathCollector(AppCompatActivity context) {
+        settings = new PathSettings(context);
         pending = 0;
-
         BroadcastReceiver receiver = new BroadcastReceiver() {
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
@@ -108,6 +110,10 @@ public class PathCollector {
         }
 
         return path.substring(0, path.length() - 1);
+    }
+
+    public void extractPreferences(SharedPreferences prefs) {
+        settings.extractPreferences(prefs);
     }
 
     public void setOnPathsReceivedListener(OnPathsReceivedListener listener) {

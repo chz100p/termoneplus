@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,9 @@ public class PathSettings {
     private static boolean path_verify;
 
 
-    private PathSettings(Resources res) {
-        path_verify = res.getBoolean(R.bool.pref_verify_path_default);
-    }
-
     public PathSettings(Context context) {
-        this(context.getResources());
+        Resources res = context.getResources();
+        path_verify = res.getBoolean(R.bool.pref_verify_path_default);
         extractPreferences(PreferenceManager.getDefaultSharedPreferences(context));
     }
 
