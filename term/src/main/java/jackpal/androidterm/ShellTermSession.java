@@ -42,12 +42,11 @@ import java.util.Map;
  * upon stopping.
  */
 public class ShellTermSession extends GenericTermSession {
-    private int mProcId;
-    private Thread mWatcherThread;
-
-    private String mInitialCommand;
-
     private static final int PROCESS_EXITED = 1;
+
+    private final String mInitialCommand;
+    private final int mProcId;
+    private final Thread mWatcherThread;
 
 
     public ShellTermSession(TermSettings settings, String initialCommand) throws IOException {
@@ -57,17 +56,13 @@ public class ShellTermSession extends GenericTermSession {
         mInitialCommand = initialCommand;
 
         mProcId = createShellProcess(settings);
-
         final Handler handler = new ProcessHandler(this);
-        mWatcherThread = new Thread() {
-            @Override
-            public void run() {
-                Log.i(Application.APP_TAG, "waiting for: " + mProcId);
-                int result = Process.waitExit(mProcId);
-                Log.i(Application.APP_TAG, "Subprocess exited: " + result);
-                handler.sendMessage(handler.obtainMessage(PROCESS_EXITED, result));
-            }
-        };
+        mWatcherThread  = new Thread(() -> {
+            Log.i(Application.APP_TAG, "waiting for: " + mProcId);
+            int result = Process.waitExit(mProcId);
+            Log.i(Application.APP_TAG, "subprocess exited: " + result);
+            handler.sendMessage(handler.obtainMessage(PROCESS_EXITED, result));
+        });
         mWatcherThread.setName("Process watcher");
     }
 
