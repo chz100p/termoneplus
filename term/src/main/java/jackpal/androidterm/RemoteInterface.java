@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2012 Steven Luo
- * Copyright (C) 2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2019-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ public class RemoteInterface extends RemoteActionActivity {
         TermService service = getTermService();
 
         try {
-            TermSession session = TermActivity.createTermSession(this, mSettings, path_settings, iInitialCommand);
+            TermSession session = TermActivity.createTermSession(this, mSettings, iInitialCommand);
 
             service.addSession(session);
 

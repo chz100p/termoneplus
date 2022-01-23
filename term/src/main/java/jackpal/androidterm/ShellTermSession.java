@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,13 +50,13 @@ public class ShellTermSession extends GenericTermSession {
     private static final int PROCESS_EXITED = 1;
 
 
-    public ShellTermSession(TermSettings settings, PathSettings path_settings, String initialCommand) throws IOException {
+    public ShellTermSession(TermSettings settings, String initialCommand) throws IOException {
         super(ParcelFileDescriptor.open(new File("/dev/ptmx"), ParcelFileDescriptor.MODE_READ_WRITE),
                 settings, false);
 
         mInitialCommand = initialCommand;
 
-        mProcId = createShellProcess(settings, path_settings);
+        mProcId = createShellProcess(settings);
 
         final Handler handler = new ProcessHandler(this);
         mWatcherThread = new Thread() {
@@ -85,7 +85,7 @@ public class ShellTermSession extends GenericTermSession {
         }
     }
 
-    private int createShellProcess(TermSettings settings, PathSettings path_settings) throws IOException {
+    private int createShellProcess(TermSettings settings) throws IOException {
         String shell = settings.getShell();
 
         ArrayList<String> argList = parse(shell);
@@ -111,7 +111,7 @@ public class ShellTermSession extends GenericTermSession {
 
         Map<String, String> map = new HashMap<>(System.getenv());
         map.put("TERM", settings.getTermType());
-        map.put("PATH", Application.xbindir.getPath() + File.pathSeparator + path_settings.buildPATH());
+        map.put("PATH", Application.xbindir.getPath() + File.pathSeparator + PathSettings.buildPATH());
         map.put("HOME", settings.getHomePath());
         map.put("TMPDIR", Application.getTmpPath());
         map.put("ENV", Application.getScriptFilePath());
