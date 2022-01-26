@@ -31,7 +31,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    flavorDimensions "catalog"
     productFlavors {
+        play {
+            // Google Play store
+            dimension 'catalog'
+        }
+        full {
+            dimension 'catalog'
+            versionName android.defaultConfig.versionName + "/X"
+        }
     }
     if (project.hasProperty("signing.properties")) {
 
