@@ -54,6 +54,10 @@ public class Permissions {
 
 
     public static boolean permissionExternalStorage(AppCompatActivity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
+            if (PermissionManageExternal.isGranted())
+                return true;
+        }
         for (String permission : external_storage_permissions) {
             int status = ActivityCompat.checkSelfPermission(activity, permission);
             if (status != PackageManager.PERMISSION_GRANTED)
@@ -75,6 +79,10 @@ public class Permissions {
     }
 
     public static void requestExternalStorage(AppCompatActivity activity, View view, int requestCode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R /*API Level 30*/) {
+            if (PermissionManageExternal.request(activity))
+                return;
+        }
         // We must request at least one permission!
         if (external_storage_permissions.length == 0) return;
         if (shouldShowExternalStorageRationale(activity))
