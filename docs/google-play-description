@@ -12,6 +12,8 @@ Terminal screen support color schemes like "Dark Pastels", "Solarized Light", "S
 
 Terminal session use "shell start-up script" where you could tune environment setting, add shell functions or command aliases. In addition user could paste script obtained from content provider.
 
+Tap on text with http or rtsp URL try to open it with respective "view" activity.
+
 If needed user could request "Wake" and "Wi-Fi" locks.
 
 "TermOne Plus" user interface is based on material design - icons, colors. It uses navigation drawer as main menu. Also user could switch between "Light" and "Dark" theme mode.
