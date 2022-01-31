@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (C) 2017-2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@
             android:layout_marginStart="@dimen/text2_margin"
             android:layout_marginLeft="@dimen/text2_margin"
             android:hint="@string/addshortcut_command_hint"
+            android:importantForAutofill="no"
             android:inputType="textNoSuggestions"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -71,6 +72,7 @@
             android:layout_marginStart="@dimen/text2_margin"
             android:layout_marginLeft="@dimen/text2_margin"
             android:hint="@string/addshortcut_example_hint"
+            android:importantForAutofill="no"
             android:inputType="textNoSuggestions"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
@@ -87,6 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text2_margin"
             android:layout_marginLeft="@dimen/text2_margin"
+            android:importantForAutofill="no"
             android:inputType="textNoSuggestions"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
