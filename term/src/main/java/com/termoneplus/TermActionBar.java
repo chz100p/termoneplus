@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2017-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import com.google.android.material.navigation.NavigationView;
+import com.termoneplus.utils.WrapOpenURL;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
@@ -68,6 +69,15 @@ public class TermActionBar {
 
         nav_view = context.findViewById(R.id.nav_view);
         NavigationBackground.presetColors(context, nav_view);
+        {
+            View header = nav_view.getHeaderView(0);
+            View icon = header.findViewById(R.id.app_icon);
+            icon.setOnClickListener(this::onAppIconClicked);
+            View name = header.findViewById(R.id.app_name);
+            name.setOnClickListener(this::onAppTitleClicked);
+            View email = header.findViewById(R.id.app_email);
+            email.setOnClickListener(this::onEmailAddressClicked);
+        }
 
         ActionBar appbar = context.getSupportActionBar();
         if (appbar != null) {
@@ -166,6 +176,18 @@ public class TermActionBar {
         }.start();
     }
 
+    public void onAppIconClicked(View view) {
+        WrapOpenURL.launch(view.getContext(), urlApplicationSite());
+    }
+
+    public void onAppTitleClicked(View view) {
+        WrapOpenURL.launch(view.getContext(), urlApplicationSite());
+    }
+
+    public void onEmailAddressClicked(View view) {
+        WrapOpenURL.launch(view.getContext(), urlApplicationMail());
+    }
+
     public interface OnItemSelectedListener {
         void onItemSelected(int position);
     }
@@ -222,5 +244,15 @@ public class TermActionBar {
                 }
             }
         }
+    }
+
+    private String urlApplicationSite() {
+        Context context = drawer.getContext();
+        return context.getResources().getString(R.string.application_site);
+    }
+
+    private String urlApplicationMail() {
+        Context context = drawer.getContext();
+        return "mailto:" + context.getResources().getString(R.string.application_email);
     }
 }

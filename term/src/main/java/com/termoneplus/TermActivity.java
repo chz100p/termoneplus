@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018-2021 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -113,18 +113,6 @@ public class TermActivity extends jackpal.androidterm.Term {
         super.onSharedPreferenceChanged(sharedPreferences, key);
     }
 
-    public void onAppIconClicked(View view) {
-        WrapOpenURL.launch(this, urlApplicationSite());
-    }
-
-    public void onAppTitleClicked(View view) {
-        WrapOpenURL.launch(this, urlApplicationSite());
-    }
-
-    public void onEmailAddressClicked(View view) {
-        WrapOpenURL.launch(this, urlApplicationMail());
-    }
-
     @Override
     protected void updatePrefs() {
         Integer theme_resid = getThemeId();
@@ -135,13 +123,5 @@ public class TermActivity extends jackpal.androidterm.Term {
             }
         }
         super.updatePrefs();
-    }
-
-    private String urlApplicationSite() {
-        return getResources().getString(R.string.application_site);
-    }
-
-    private String urlApplicationMail() {
-        return "mailto:" + getResources().getString(R.string.application_email);
     }
 }
