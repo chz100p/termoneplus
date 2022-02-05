@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Copyright (c) 2017-2021, Roumen Petrov <rpetrov@termoneplus.com>
+Copyright (c) 2017-2022, Roumen Petrov <rpetrov@termoneplus.com>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -52,6 +52,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="ignore_battery_optimizations">Разрешаване на \"%1$s\" да пренебрегва оптимизации за батерията?</string>
     <string name="enable_wifilock">Прихващане на безжичната мрежа</string>
     <string name="disable_wifilock">Освобождаване на безжичната мрежа</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Отваряне на чекмеджето за управлерение</string>
+    <string name="navigation_drawer_close">Затвяране на чекмеджето за управлерение</string>
 
     <string name="message_external_storage_rationale">Достъпът до \"външен носител\" е необходим за управление на файловете му</string>
     <string name="message_external_storage_granted">Получен достъп до \"външен носител\"</string>
