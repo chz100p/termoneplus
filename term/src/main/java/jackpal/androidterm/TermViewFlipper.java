@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2011 Steven Luo
- * Copyright (C) 2018-2019 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,9 @@ import jackpal.androidterm.util.TermSettings;
 
 
 public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
+    final Rect win = new Rect();
+    final Rect vis = new Rect();
+
     private Context context;
     private Toast mToast;
     private LinkedList<UpdateCallback> callbacks;
@@ -204,22 +207,20 @@ public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (full_screen || resize_on_measure) {
-            /* Get rectangle representing visible area of this window (takes
-               IME into account, but not other views in the layout) */
-            Rect win = new Rect();
-            getWindowVisibleDisplayFrame(win);
+        if (!resizeOnMeasure()) return;
 
-            /* Get rectangle representing visible area of this view, as seen by
-               the activity (takes other views in the layout into account, but
-               not space used by the IME) */
-            Rect vis = new Rect();
-            getGlobalVisibleRect(vis);
+        /* Get rectangle representing visible area of this window (takes
+           IME into account, but not other views in the layout) */
+        getWindowVisibleDisplayFrame(win);
 
-            int nw = win.width();
-            int nh = win.height() - (vis.top - win.top);
-            doSizeChanged(nw, nh);
-        }
+        /* Get rectangle representing visible area of this view, as seen by
+           the activity (takes other views in the layout into account, but
+           not space used by the IME) */
+        getGlobalVisibleRect(vis);
+
+        int nw = win.width();
+        int nh = win.height() - (vis.top - win.top);
+        doSizeChanged(nw, nh);
     }
 
     /**
@@ -229,9 +230,10 @@ public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
      */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        if (!full_screen && !resize_on_measure)
-            doSizeChanged(w, h);
         super.onSizeChanged(w, h, oldw, oldh);
+        if (resizeOnMeasure()) return;
+
+        doSizeChanged(w, h);
     }
 
     @Override
@@ -241,6 +243,12 @@ public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
             mRedoLayout = false;
         }
         super.onDraw(canvas);
+    }
+
+    private boolean resizeOnMeasure() {
+        /* Note if "full screen" mode is activated event "size changed"
+           is not triggered. */
+        return full_screen || resize_on_measure;
     }
 
     private void doSizeChanged(int w, int h) {
