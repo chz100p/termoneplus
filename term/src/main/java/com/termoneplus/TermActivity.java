@@ -28,7 +28,6 @@ import android.widget.Toast;
 
 import com.termoneplus.utils.ScriptImporter;
 import com.termoneplus.utils.ThemeManager;
-import com.termoneplus.utils.WrapOpenURL;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
