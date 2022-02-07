@@ -163,6 +163,7 @@
 
     <string name="confirm_window_close_message">Zamknąć to okno?</string>
 
+    <string name="perm_grp_term">Uprawnienia programu Terminal Emulator</string>
     <string name="perm_run_script">Uruchamiaj komendy w Terminal Emulator</string>
     <string name="permdesc_run_script">Pozwala na otwieranie nowych okien w aplikacji Terminal Emulator dla systemu Android i wykonywanie poleceń w tych oknach ze wszystkimi uprawnieniami, w tym dostępem do Internetu i karty SD.</string>
     <string name="perm_append_to_path">Dodawanie komend w Terminal Emulator</string>
