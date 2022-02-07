@@ -218,8 +218,21 @@ public class TermViewFlipper extends ViewFlipper implements Iterable<View> {
            not space used by the IME) */
         getGlobalVisibleRect(vis);
 
+        /* Work around bug in getWindowVisibleDisplayFrame on API < 10, and
+           avoid a distracting height change as status bar hides otherwise. */
+        /* Extra note:
+           On some "new" devices front-camera is places in status bar. On those
+           devices is useless to hide status bar as this does not add extra
+           space to window. On such devices win.top always has a value. This
+           does not look like defect as window top position is not changed.
+           Bug or not on those devices using zero for win.top in calculations
+           bellow resolves issue with partial display of action bar if status bar
+           is hidden (full screen mode). */
+        int win_top = win.top;
+        if (full_screen) win_top = 0;
+
         int nw = win.width();
-        int nh = win.height() - (vis.top - win.top);
+        int nh = win.height() - (vis.top - win_top);
         doSizeChanged(nw, nh);
     }
 
