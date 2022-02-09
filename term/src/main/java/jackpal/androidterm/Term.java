@@ -411,22 +411,15 @@ public class Term extends AppCompatActivity
         }
 
         {
-            Window win = getWindow();
-            WindowManager.LayoutParams params = win.getAttributes();
-            final int FULLSCREEN = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-            int desiredFlag = mSettings.showStatusBar() ? 0 : FULLSCREEN;
-            if (desiredFlag != (params.flags & FULLSCREEN)) {
-                if (mAlreadyStarted) {
-                    // Can't switch to/from fullscreen after
-                    // starting the activity.
-                    restart(R.string.restart_statusbar_change);
-                    return;
-                } else {
-                    win.setFlags(desiredFlag, FULLSCREEN);
-                }
+            int flag = FullScreenCompat.update(this);
+            if (flag < 0) {
+                // Cannot switch to/from fullscreen after starting activity.
+                restart(R.string.restart_statusbar_change);
+                return;
             }
-            mViewFlipper.setFullScreen((params.flags & FULLSCREEN) != 0);
+            mViewFlipper.setFullScreen(flag > 0);
         }
+
         if (mActionBarMode != mSettings.actionBarMode()) {
             if (mAlreadyStarted) {
                 // Can't switch to new layout after
@@ -931,6 +924,27 @@ public class Term extends AppCompatActivity
     private void synchronizeActionBar() {
         int position = mViewFlipper.getDisplayedChild();
         mActionBar.setSelection(position);
+    }
+
+    private static class FullScreenCompat {
+        private static int update(Term activity) {
+            return Compat1.update(activity);
+        }
+
+        private static class Compat1 {
+            private final static int FULLSCREEN = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+
+            private static int update(Term activity) {
+                Window win = activity.getWindow();
+                WindowManager.LayoutParams params = win.getAttributes();
+                int desired = activity.mSettings.showStatusBar() ? 0 : FULLSCREEN;
+                if (desired != (params.flags & FULLSCREEN)) {
+                    if (activity.mAlreadyStarted) return -1;
+                    win.setFlags(desired, FULLSCREEN);
+                }
+                return (params.flags & FULLSCREEN) != 0 ? 1 : 0;
+            }
+        }
     }
 
     private class WindowListActionBarAdapter extends WindowListAdapter implements UpdateCallback {
