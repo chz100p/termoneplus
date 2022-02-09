@@ -16,6 +16,7 @@
   -->
 <!--
 Copyright (c) 2017, Tobias Bannert <tobannert@gmail.com>
+Copyright (c) 2022, Ingo Brückl <ib@wupperonline.de>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -56,90 +57,101 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string-array name="entries_actionbar_preference">
         <!-- <item>Action bar disabled</item> -->
         <item>Aktionsleiste immer anzeigen</item>
-        <item>Aktionsleiste verstecken (zum Anzeigen Bildschirm oben berühren oder Menü-Taste drücken)</item>
+        <item>Aktionsleiste verbergen (Bildschirm oben berühren oder Menütaste drücken, um sie wieder anzuzeigen)</item>
+    </string-array>
+
+    <string-array name="entries_thememode_preference">
+        <item>Dunkel</item>
+        <item>Hell</item>
+        <item>System</item>
     </string-array>
 
     <string-array name="entries_orientation_preference">
         <item>Automatisch</item>
-        <item>Querformat (Landscape)</item>
-        <item>Hochformat (Portrait)</item>
+        <item>Querformat</item>
+        <item>Hochformat</item>
+    </string-array>
+
+    <string-array name="entries_sizecalc_preference">
+        <item>Nach der Größenänderung</item>
+        <item>Während der Größenbestimmung (alt)</item>
     </string-array>
 
     <string-array name="entries_cursorblink_preference">
-        <item>Nicht blinkender Zeiger</item>
-        <item>Blinkender Zeiger</item>
+        <item>Nicht blinkender Cursor</item>
+        <item>Blinkender Cursor</item>
     </string-array>
 
     <string-array name="entries_cursorstyle_preference">
         <item>Rechteck</item>
-        <item>Unterstrichen</item>
+        <item>Unterstrich</item>
         <item>Vertikaler Balken</item>
     </string-array>
 
     <string-array name="entries_fontsize_preference">
         <item>4x8 Pixel</item>
-        <item>6 Punkte</item>
-        <item>7 Punkte</item>
-        <item>8 Punkte</item>
-        <item>9 Punkte</item>
-        <item>10 Punkte</item>
-        <item>12 Punkte</item>
-        <item>14 Punkte</item>
-        <item>16 Punkte</item>
-        <item>20 Punkte</item>
-        <item>24 Punkte</item>
-        <item>28 Punkte</item>
-        <item>32 Punkte</item>
-        <item>36 Punkte</item>
-        <item>42 Punkte</item>
-        <item>48 Punkte</item>
-        <item>64 Punkte</item>
-        <item>72 Punkte</item>
-        <item>96 Punkte</item>
-        <item>144 Punkte</item>
-        <item>288 Punkte</item>
+        <item>6 Punkt</item>
+        <item>7 Punkt</item>
+        <item>8 Punkt</item>
+        <item>9 Punkt</item>
+        <item>10 Punkt</item>
+        <item>12 Punkt</item>
+        <item>14 Punkt</item>
+        <item>16 Punkt</item>
+        <item>20 Punkt</item>
+        <item>24 Punkt</item>
+        <item>28 Punkt</item>
+        <item>32 Punkt</item>
+        <item>36 Punkt</item>
+        <item>42 Punkt</item>
+        <item>48 Punkt</item>
+        <item>64 Punkt</item>
+        <item>72 Punkt</item>
+        <item>96 Punkt</item>
+        <item>144 Punkt</item>
+        <item>288 Punkt</item>
     </string-array>
 
     <string-array name="entries_color_preference">
-        <item>Schwarzer Text auf weiß</item>
-        <item>Weißer Text auf schwarz</item>
-        <item>Weißer Text auf blau</item>
-        <item>Grüner Text auf schwarz</item>
-        <item>Oranger Text auf schwarz</item>
-        <item>Roter Text auf schwarz</item>
-        <item>Holo blue text on black</item>
-        <item>Solarized Light</item>
-        <item>Solarized Dark</item>
-        <item>Linux Console</item>
-        <item>Dark Pastels</item>
+        <item>Schwarzer Text auf Weiß</item>
+        <item>Weißer Text auf Schwarz</item>
+        <item>Weißer Text auf Blau</item>
+        <item>Grüner Text auf Schwarz</item>
+        <item>Oranger Text auf Schwarz</item>
+        <item>Roter Text auf Schwarz</item>
+        <item>Mattblauer Text auf Schwarz</item>
+        <item>Solarisiert (Hell)</item>
+        <item>Solarisiert (Dunkel)</item>
+        <item>Linux-Konsole</item>
+        <item>Pastell (Dunkel)</item>
     </string-array>
 
     <string-array name="entries_backaction_preference">
-        <item>Schließt alle Terminalfenster</item>
-        <item>Schließt das aktuelle Terminalfenster</item>
-        <item>Aktivität schließen, Sessions erhalten lassen</item>
-        <item>Sendet ESC zum Terminal</item>
-        <item>Sendet TAB zum Terminal</item>
+        <item>Alle Terminalfenster schließen</item>
+        <item>Aktuelles Terminalfenster schließen</item>
+        <item>App beenden, aber Sitzungen erhalten</item>
+        <item>»Esc« zum Terminal senden</item>
+        <item>»Tab« zum Terminal senden</item>
     </string-array>
 
     <string-array name="entries_controlkey_preference">
         <item>Trackball</item>
-        <item>\@ Taste</item>
+        <item>\@-Taste</item>
         <item>Linke Alt-Taste</item>
         <item>Rechte Alt-Taste</item>
-        <item>Lauter</item>
-        <item>Leiser</item>
+        <item>Lauter-Taste</item>
+        <item>Leiser-Taste</item>
         <item>Kamera-Taste</item>
         <item>Keine</item>
     </string-array>
 
     <string-array name="entries_fnkey_preference">
         <item>Trackball</item>
-        <item>\@ Taste</item>
+        <item>\@-Taste</item>
         <item>Linke Alt-Taste</item>
         <item>Rechte Alt-Taste</item>
-        <item>Lauter</item>
-        <item>Leiser</item>
+        <item>Lauter-Taste</item>
+        <item>Leiser-Taste</item>
         <item>Kamera-Taste</item>
         <item>Keine</item>
     </string-array>
@@ -152,11 +164,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- These are the 'short' names for the control keys. They are used in the special keys dialog. -->
     <string-array name="control_keys_short_names">
         <item>Trackball</item>
-        <item>\@ Taste</item>
+        <item>\@-Taste</item>
         <item>Linke Alt-Taste</item>
         <item>Rechte Alt-Taste</item>
-        <item>Lauter</item>
-        <item>Leiser</item>
+        <item>Lauter-Taste</item>
+        <item>Leiser-Taste</item>
         <item>Kamera-Taste</item>
         <item>Keine</item>
     </string-array>
@@ -164,11 +176,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- These are the 'short' names for the Fn keys. They are used in the special keys dialog. -->
     <string-array name="fn_keys_short_names">
         <item>Trackball</item>
-        <item>\@ Taste</item>
+        <item>\@-Taste</item>
         <item>Linke Alt-Taste</item>
         <item>Rechte Alt-Taste</item>
-        <item>Lauter</item>
-        <item>Leiser</item>
+        <item>Lauter-Taste</item>
+        <item>Leiser-Taste</item>
         <item>Kamera-Taste</item>
         <item>Keine</item>
     </string-array>

@@ -16,6 +16,7 @@
 -->
 <!--
 Copyright (c) 2017, Tobias Bannert <tobannert@gmail.com>
+Copyright (c) 2022, Ingo Brückl <ib@wupperonline.de>
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -53,27 +54,39 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="new_window">Neues Fenster</string>
     <string name="close_window">Fenster schließen</string>
     <string name="window_list">Fenster</string>
-    <string name="prev_window">Vorh. Fenster</string>
-    <string name="next_window">Nächst. Fenster</string>
+    <string name="prev_window">Vorheriges Fenster</string>
+    <string name="next_window">Nächstes Fenster</string>
     <string name="reset">Zurücksetzen</string>
-    <string name="send_email">Teilen per E-Mail</string>
+    <string name="send_email">Als E-Mail senden</string>
     <string name="special_keys">Spezialtasten</string>
-    <string name="toggle_soft_keyboard">Tastatur an/aus</string>
+    <string name="toggle_soft_keyboard">Bildschirmtastatur ein/aus</string>
 
-    <string name="reset_toast_notification">Der Status dieses Terminalfensters wurde zurückgesetzt.</string>
+    <string name="reset_toast_notification">Zustand dieses Terminalfensters wurde zurückgesetzt</string>
 
-    <string name="enable_wakelock">Bildschirm immer anlassen</string>
-    <string name="disable_wakelock">Bildschirm ist immer an</string>
-    <string name="enable_wifilock">WLAN immer anlassen</string>
-    <string name="disable_wifilock">WLAN ist immer an</string>
+    <string name="enable_wakelock">Bildschirm nie abschalten</string>
+    <string name="disable_wakelock">Bildschirm-Abschaltung erlauben</string>
+    <string name="ignore_battery_optimizations">%1$s erlauben, die Akku-Optimierung zu ignorieren?</string>
+    <string name="enable_wifilock">WLAN nie abschalten</string>
+    <string name="disable_wifilock">WLAN-Abschaltung erlauben</string>
 
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+
+    <string name="message_external_storage_rationale">Speicherzugriff ist zur Datenverwaltung erforderlich</string>
+    <string name="message_external_storage_granted">Speicherzugriff wurde zugelassen</string>
+    <string name="message_external_storage_not_granted">Speicherzugriff wurde abgelehnt</string>
+
+    <!-- Context menu -->
     <string name="edit_text">Text bearbeiten</string>
     <string name="select_text">Text auswählen</string>
     <string name="copy_all">Alles kopieren</string>
     <string name="paste">Einfügen</string>
+    <string name="paste_script">Skript einfügen</string>
     <string name="send_control_key">Strg-Taste senden</string>
-    <string name="send_fn_key">FN-Taste senden</string>
+    <string name="send_fn_key">Fn-Taste senden</string>
 
+    <!-- Miscellaneous -->
     <string name="window_title">Fenster %1$d</string>
 
     <string name="service_notify_text">Terminalsitzung wird ausgeführt</string>
@@ -84,129 +97,168 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="screen_preferences">Bildschirm</string>
 
     <string name="title_statusbar_preference">Statuszeile</string>
-    <string name="summary_statusbar_preference">Die Statuszeile anzeigen/verbergen.</string>
-    <string name="dialog_title_statusbar_preference">Statuszeile</string>
+    <string name="summary_statusbar_preference">Die Sichtbarkeit der Statuszeile bestimmen.</string>
+    <string name="dialog_title_statusbar_preference">Sichtbarkeit der Statuszeile</string>
+    <string name="restart_statusbar_change">Neustart der App …\n(Änderung der Statuszeile)</string>
 
     <string name="title_actionbar_preference">Aktionsleiste</string>
-    <string name="summary_actionbar_preference">Wählen sie das Verhalten der Aktionsleiste.</string>
-    <string name="summary_actionbar_preference_compat">Wählen sie das Verhalten der Aktionsleiste.</string>
-    <string name="dialog_title_actionbar_preference">Verhalten der Aktionsleiste</string>
+    <string name="summary_actionbar_preference">Die Sichtbarkeit der Aktionsleiste bestimmen.</string>
+    <string name="summary_actionbar_preference_compat">Die Sichtbarkeit der Aktionsleiste bestimmen.</string>
+    <string name="dialog_title_actionbar_preference">Sichtbarkeit der Aktionsleiste</string>
+    <string name="restart_actionbar_change">Neustart der App …\n(Änderung der Aktionsleiste)</string>
+
+    <string name="title_thememode_preference">Darstellung</string>
+    <string name="summary_thememode_preference">Die Darstellung festlegen.</string>
+    <string name="dialog_title_thememode_preference">Darstellung</string>
+    <string name="restart_thememode_change">Neustart der App …\n(Änderung der Darstellung)</string>
 
     <string name="title_orientation_preference">Bildschirmausrichtung</string>
-    <string name="summary_orientation_preference">Wähle die Bilschirmausrichtung</string>
+    <string name="summary_orientation_preference">Die Bildschirmausrichtung festlegen.</string>
     <string name="dialog_title_orientation_preference">Bildschirmausrichtung</string>
 
-    <string name="title_cursorstyle_preference">Zeigerstil</string>
-    <string name="summary_cursorstyle_preference">Zeigerstil auswählen.</string>
-    <string name="dialog_title_cursorstyle_preference">Zeigerstil</string>
+    <string name="title_sizecalc_preference">Größenberechnung</string>
+    <string name="summary_sizecalc_preference">Die Berechnung der Bildschirmgröße des Terminals (als Behelfslösung für alte Geräte oder einiger Bildschirmtastaturen) anpassen.</string>
+    <string name="dialog_title_sizecalc_preference">Methode zur Größenberechnung</string>
 
-    <string name="title_cursorblink_preference">Zeigerblinken</string>
-    <string name="summary_cursorblink_preference">Zeigerblinken auswählen</string>
-    <string name="dialog_title_cursorblink_preference">Zeigerblinken</string>
+    <string name="title_cursorstyle_preference">Cursor-Stil</string>
+    <string name="summary_cursorstyle_preference">Die Art des Cursors festlegen.</string>
+    <string name="dialog_title_cursorstyle_preference">Cursor-Stil</string>
+
+    <string name="title_cursorblink_preference">Cursor-Blinken</string>
+    <string name="summary_cursorblink_preference">Das Blinken des Cursors festlegen.</string>
+    <string name="dialog_title_cursorblink_preference">Cursor-Blinken</string>
 
     <string name="text_preferences">Text</string>
 
-    <string name="title_utf8_by_default_preference">UTF-8 als Standard definieren</string>
-    <string name="summary_utf8_by_default_preference">Ist der UTF-8 Modus standartmäßig aktiv?</string>
+    <string name="title_utf8_by_default_preference">UTF-8 als Standard festlegen</string>
+    <string name="summary_utf8_by_default_preference">Sollen alle Zeichen in UTF-8 kodiert werden?</string>
 
     <string name="title_fontsize_preference">Schriftgröße</string>
-    <string name="summary_fontsize_preference">Die Schriftgröße in Punkten auswählen.</string>
+    <string name="summary_fontsize_preference">Die Schriftgröße festlegen.</string>
     <string name="dialog_title_fontsize_preference">Schriftgröße</string>
 
     <string name="title_color_preference">Farben</string>
-    <string name="summary_color_preference">Die Text- und Hintergrundfarbe auswählen.</string>
-    <string name="dialog_title_color_preference">Textfarbe</string>
+    <string name="summary_color_preference">Die Text- und Hintergrundfarbe festlegen.</string>
+    <string name="dialog_title_color_preference">Text- und Hintergrundfarbe</string>
 
     <string name="keyboard_preferences">Tastatur</string>
 
-    <string name="title_backaction_preference">Zurück-Knopf</string>
-    <string name="summary_backaction_preference">Festlegen der Aktion bei Drücken des Zurück-Knopfes.</string>
-    <string name="dialog_title_backaction_preference">Zurück-Knopf</string>
+    <string name="title_backaction_preference">Zurück</string>
+    <string name="summary_backaction_preference">Die Aktion bei Betätigung der »Zurück«-Schaltfläche festlegen.</string>
+    <string name="dialog_title_backaction_preference">Zurück</string>
 
     <string name="title_controlkey_preference">Steuerungstaste (Strg)</string>
-    <string name="summary_controlkey_preference">Die Steuerungstaste auswählen.</string>
+    <string name="summary_controlkey_preference">Die Steuerungstaste festlegen.</string>
     <string name="dialog_title_controlkey_preference">Steuerungstaste (Strg)</string>
 
     <string name="title_fnkey_preference">Funktionstaste (Fn)</string>
-    <string name="summary_fnkey_preference">Die Funktionstaste auswählen.</string>
+    <string name="summary_fnkey_preference">Die Funktionstaste festlegen.</string>
     <string name="dialog_title_fnkey_preference">Funktionstaste (Fn)</string>
 
     <string name="title_ime_preference">Eingabemethode</string>
-    <string name="summary_ime_preference">Die Eingabemethode für die Bildschirmtastatur auswählen.</string>
+    <string name="summary_ime_preference">Die Eingabemethode der Bildschirmtastatur festlegen.</string>
     <string name="dialog_title_ime_preference">Eingabemethode</string>
 
     <string name="shell_preferences">Shell</string>
     <string name="title_shell_preference">Shell</string>
-    <string name="summary_shell_preference">Die zu verwendene Shell festlegen.</string>
+    <string name="summary_shell_preference">Die Shell-Kommandozeile festlegen.</string>
     <string name="dialog_title_shell_preference">Shell</string>
 
+    <string name="title_source_sys_shrc_preference">Systemweite mkshrc einlesen</string>
+    <string name="summary_source_sys_shrc_preference">
+        Soll der Inhalt der Shell-Konfigurationsdatei des Systems (/system/etc/mkshrc) übernommen werden?
+        (Hängt von der Shell-Kommandozeile ab.)
+    </string>
+
     <string name="title_initialcommand_preference">Startbefehl</string>
-    <string name="summary_initialcommand_preference">Befehl eingeben, der beim Start an die Shell gesendet wird.</string>
+    <string name="summary_initialcommand_preference">Der Befehl, der bei ihrem Start an die Shell gesendet wird.</string>
     <string name="dialog_title_initialcommand_preference">Startbefehl</string>
-    <!-- BOYA -->
+
+    <string name="title_shellrc_preference">Shell-Start</string>
+    <string name="summary_shellrc_preference">Die Befehle bestimmen, die von der Shell ausgeführt werden, wenn diese startet.</string>
+    <string name="dialog_title_shellrc_preference">Shell-Start</string>
+    <string name="hint_shellrc_preference">(Shell-Startbefehle)</string>
+
     <string name="title_termtype_preference">Terminal-Typ</string>
-    <string name="summary_termtype_preference">Welchen Terminal-Typ soll die Shell ausführen?</string>
+    <string name="summary_termtype_preference">Den Terminal-Typ festlegen, den die Shell ausführen soll.</string>
     <string name="dialog_title_termtype_preference">Terminal-Typ</string>
 
-    <string name="title_close_window_on_process_exit_preference">Fenster mit Shell beenden</string>
+    <string name="title_close_window_on_process_exit_preference">Fenster beim Beenden schließen</string>
     <string name="summary_close_window_on_process_exit_preference">Soll das Fenster geschlossen werden, wenn die Shell beendet wird?</string>
 
-    <string name="title_verify_path_preference">Überprüfe PATH Einträge</string>
-    <string name="summary_verify_path_preference">Sollen Verzeichnisse, auf welche nicht zugegriffen werden kann, vom PATH entfernt werden?</string>
+    <string name="title_verify_path_preference">PATH-Einträge prüfen</string>
+    <string name="summary_verify_path_preference">Sollen Verzeichnisse, auf die nicht zugegriffen werden kann, aus $PATH entfernt werden?</string>
 
-    <string name="title_home_path_preference">HOME Verzeichniss</string>
-    <string name="summary_home_path_preference">Pfad zu einem beschreibbaren Verzeichniss welches als HOME genutzt werden soll.</string>
+    <string name="title_home_path_preference">HOME-Verzeichnis</string>
+    <string name="summary_home_path_preference">Den Pfad zu einem beschreibbaren Verzeichnis festlegen, welches als $HOME genutzt werden soll.</string>
 
     <string name="control_key_dialog_title">Steuerungs- und Funktionstasten</string>
     <!-- The word CTRLKEY should be left un-translated. It will be replaced at run-time with the
          actual control key key name. -->
     <string name="control_key_dialog_control_text">CTRLKEY + Leertaste: Strg-@ (NUL)\nCTRLKEY + A..Z: Strg-A..Z\nCTRLKEY + 5: Strg-]\nCTRLKEY + 6: Strg-^\nCTRLKEY + 7: Strg-_\nCTRLKEY + 9: F11\nCTRLKEY + 0: F12</string>
-    <string name="control_key_dialog_control_disabled_text">Keine Steuerungstaste festgelegt.</string>
+    <string name="control_key_dialog_control_disabled_text">Es wurde keine Steuerungstaste festgelegt.</string>
     <!-- The word FNKEY should be left un-translated. It will be replaced at run-time with the
          actual function key key name. -->
-    <string name="control_key_dialog_fn_text">FNKEY + 1..9: F1-F9\nFNKEY + 0: F10\nFNKEY + W: ↑\nFNKEY + A: ←\nFNKEY + S: ↓\nFNKEY + D: →\nFNKEY + P: Bild↑\nFNKEY + N: Bild↓\nFNKEY + T: Tab\nFNKEY + L : | (pipe)\nFNKEY + U: _ (Unterstrich)\nFNKEY + E: Strg-[ (ESC)\nFNKEY + X: Entfernen\nFNKEY + I: Einfügen\nFNKEY + H: Pos1\nFNKEY + F: Ende\nFNKEY + .: Strg-\\\n</string>
-    <string name="control_key_dialog_fn_disabled_text">Keine Funktionstaste fergelegt.</string>
+    <string name="control_key_dialog_fn_text">FNKEY + 1..9: F1-F9\nFNKEY + 0: F10\nFNKEY + W: ↑\nFNKEY + A: ←\nFNKEY + S: ↓\nFNKEY + D: →\nFNKEY + P: Bild↑\nFNKEY + N: Bild↓\nFNKEY + T: Tab\nFNKEY + L : | (Pipe)\nFNKEY + U: _ (Unterstrich)\nFNKEY + E: Strg-[ (Esc)\nFNKEY + X: Entf\nFNKEY + I: Einfg\nFNKEY + H: Pos1\nFNKEY + F: Ende\nFNKEY + .: Strg-\\\n</string>
+    <string name="control_key_dialog_fn_disabled_text">Es wurde keine Funktionstaste festgelegt.</string>
 
     <string name="confirm_window_close_message">Dieses Fenster schließen?</string>
 
-    <string name="perm_run_script">Beliebige Scripte im Terminal Emulator ausführen</string>
-    <string name="permdesc_run_script">Erlaubt Anwendungen, neue Fenster im Terminal Emulator for Android zu öffnen und in diesen Befehle auszuführen. Dies schließt alle Berechtigungen von Terminal Emulator for Android ein, inklusive Internetzugang und Schreib-/Leserechte auf der SD-Karte.</string>
-    <string name="perm_append_to_path">Befehle zum Terminal Emulator hinzufügen</string>
-    <string name="permdesc_append_to_path">Erlaubt es Applikationen dem Terminal Emulator für Android zusätzliche Befehle zur Verfügung zu stellen (fügt Verzeichnisse an die PATH Valriable an).</string>
-    <string name="perm_prepend_to_path">Befehle im Terminal Emulator Überschreiben</string>
-    <string name="permdesc_prepend_to_path">Erlaubt es Applikationen im Terminal Emulator für Android existierende Befehle mit eigenen Versionen zu überschreiben (Fügt Verzeichnisse am Anfang der PATH Variable ein).</string>
+    <string name="perm_grp_term">Terminalemulator-Berechtigungen</string>
+    <string name="permdesc_grp_term">Wird für den Zugriff auf Terminalemulator-Funktionen verwendet.</string>
 
-    <string name="email_transcript_subject">Auszug von Terminal Emulator for Android</string>
-    <string name="email_transcript_chooser_title">E-Mail Verschicken mit:</string>
-    <string name="email_transcript_no_email_activity_found">Konnte keine App zum Verschicken der E-Mail finden</string>
+    <string name="perm_run_script">Beliebige Skripte im Terminalemulator ausführen</string>
+    <string name="permdesc_run_script">Erlaubt es einer App, neue Fenster im Terminalemulator für Android zu öffnen und in diesen Fenstern Befehle mit allen Berechtigungen des Terminalemulators für Android auszuführen, einschließlich des Zugriffs auf das Internet und Ihre SD-Karte.</string>
+    <string name="perm_append_to_path">Befehle zum Terminalemulator hinzufügen</string>
+    <string name="permdesc_append_to_path">Erlaubt es einer App, dem Terminalemulator für Android zusätzliche Befehle (und dem $PATH Verzeichnisse) hinzufügen.</string>
+    <string name="perm_prepend_to_path">Befehle im Terminalemulator Überschreiben</string>
+    <string name="permdesc_prepend_to_path">Erlaubt es einer App, bestehende Befehle des Terminalemulators für Android mit eigenen Versionen zu überschreiben (und $PATH Verzeichnisse voranzustellen).</string>
 
-    <string name="alt_sends_esc">Alt Taste sendet ESC</string>
-    <string name="alt_sends_esc_summary_on">Alt Taste sendet ESC.</string>
-    <string name="alt_sends_esc_summary_off">Alt Taste sendet ESC nicht.</string>
+    <string name="email_transcript_subject">Vom Terminalemulator für Android</string>
+    <string name="email_transcript_chooser_title">E-Mail verschicken mit:</string>
+    <string name="email_transcript_no_email_activity_found">Es wurde keine App zum Verschicken per E-Mail gefunden.</string>
 
-    <string name="title_mouse_tracking_preference">Sende Maus-Ereignisse</string>
+    <string name="alt_sends_esc">»Alt«-Taste sendet »Esc«</string>
+    <string name="alt_sends_esc_summary_on">Soll die »Alt«-Taste »Esc« ans Terminal senden?</string>
+    <string name="alt_sends_esc_summary_off">Soll die »Alt«-Taste »Esc« ans Terminal senden?</string>
+
+    <string name="title_mouse_tracking_preference">Maus-Ereignisse senden</string>
     <string name="summary_mouse_tracking_preference">Sollen Tipp- und Scroll-Ereignisse als Escape-Sequenzen ans Terminal gesendet werden?</string>
 
-    <string name="title_use_keyboard_shortcuts">Nutze Tastenkombinationen</string>
-    <string name="use_keyboard_shortcuts_summary_off">Tastenkombinationen deaktiviert.</string>
+    <string name="title_use_keyboard_shortcuts">Tastenkombinationen verwenden</string>
+    <string name="use_keyboard_shortcuts_summary_on">(Strg-Tab: Fenster wechseln, Strg-Umschalt-N: Neues Fenster, Strg-Umschalt-V: Einfügen)</string>
+    <string name="use_keyboard_shortcuts_summary_off">(Tastenkombinationen sind deaktiviert)</string>
+
+    <string name="script_import_error">Das ausgewählte Skript konnte nicht gelesen werden</string>
+    <string name="script_source_content_error">Es wurde keine App zum Lesen von Inhalten gefunden</string>
 
     <string name="help">Hilfe</string>
     <string name="activity_term_here_title">Terminal hier</string>
     <!-- BEGIN SHORTCUT RELATED STRINGS -->
-    <string name="activity_shortcut_create">Terminal Verknüpfung</string>
+    <!-- AndroidManifest.xml -->
+    <string name="activity_shortcut_create">Terminal-Verknüpfung</string>
     <!-- FileSelection activity -->
     <string name="fsnavigator_title">Datei auswählen</string>
     <string name="fsnavigator_no_external_storage">Externer Speicher nicht verfügbar</string>
-    <string name="fsnavigator_optional_enter_path">Oder hier einen Pfad eingeben.</string>
-    <string name="fsnavigator_change_theme">Aussehen ändern</string>
+    <string name="fsnavigator_optional_enter_path">oder hier einen Pfad eingeben</string>
+    <string name="fsnavigator_change_theme">Darstellung ändern</string>
     <!-- AddShortcut activity -->
     <string name="addshortcut_command_hint">Befehl</string>
-    <string name="addshortcut_button_find_command">Befehl finden</string>
+    <string name="addshortcut_example_hint">--beispiel=\"a\"</string>
+    <string name="addshortcut_button_find_command">Befehl suchen</string>
+    <string name="addshortcut_navigator_title">Verknüpfungs-Ziel wählen</string>
+    <string name="addshortcut_command_window_instructions">Der Befehl erfordert einen vollständigen Pfad, keine Argumente. Andere Befehle (z. B.: cd /sdcard) geben Sie als Argumente ein.</string>
     <string name="addshortcut_arguments_label">Argumente</string>
-    <string name="addshortcut_button_text_icon">Textsymbol</string>
+    <string name="addshortcut_shortcut_label">Verknüpfungs-Bezeichnung</string>
+    <string name="addshortcut_button_text_icon">Textsymbol erstellen</string>
+    <string name="addshortcut_make_text_icon">Textsymbol erstellen</string>
+    <string name="addshortcut_title">Terminal-Verknüpfung</string>
     <!-- ColorValue.java -->
+    <string name="colorvalue_letter_alpha">α</string>
     <string name="colorvalue_letter_red">R</string>
     <string name="colorvalue_letter_green">G</string>
     <string name="colorvalue_letter_blue">B</string>
+    <string name="colorvalue_label_lock_button_column">Fest</string>
+    <string name="colorvalue_icon_text_entry_hint">Icon-Text eingeben</string>
     <!-- END SHORTCUT RELATED STRINGS -->
 </resources>
