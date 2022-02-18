@@ -35,18 +35,13 @@ class ByteQueue {
 
     public int read(byte[] buffer, int offset, int length)
         throws InterruptedException {
-        if (length + offset > buffer.length) {
-            throw
-                new IllegalArgumentException("length + offset > buffer.length");
-        }
-        if (length < 0) {
-            throw
-            new IllegalArgumentException("length < 0");
 
-        }
-        if (length == 0) {
-            return 0;
-        }
+        if (length == 0) return 0;
+        if (length < 0)
+            throw new IllegalArgumentException("length < 0");
+        if (length + offset > buffer.length)
+            throw new IllegalArgumentException("length + offset > buffer.length");
+
         synchronized(this) {
             while (mStoredBytes == 0) {
                 wait();
@@ -79,18 +74,13 @@ class ByteQueue {
      */
     public int write(byte[] buffer, int offset, int length)
     throws InterruptedException {
-        if (length + offset > buffer.length) {
-            throw
-                new IllegalArgumentException("length + offset > buffer.length");
-        }
-        if (length < 0) {
-            throw
-            new IllegalArgumentException("length < 0");
 
-        }
-        if (length == 0) {
-            return 0;
-        }
+        if (length == 0) return 0;
+        if (length < 0)
+            throw new IllegalArgumentException("length < 0");
+        if (length + offset > buffer.length)
+            throw new IllegalArgumentException("length + offset > buffer.length");
+
         synchronized(this) {
             int bufferLength = mBuffer.length;
             while(bufferLength == mStoredBytes) {
