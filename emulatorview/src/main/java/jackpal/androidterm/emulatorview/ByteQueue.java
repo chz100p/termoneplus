@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +53,6 @@ class ByteQueue {
             }
             int totalRead = 0;
             int bufferLength = mBuffer.length;
-            boolean wasFull = bufferLength == mStoredBytes;
             while (length > 0 && mStoredBytes > 0) {
                 int oneRun = Math.min(bufferLength - mHead, mStoredBytes);
                 int bytesToCopy = Math.min(length, oneRun);
@@ -66,9 +66,7 @@ class ByteQueue {
                 offset += bytesToCopy;
                 totalRead += bytesToCopy;
             }
-            if (wasFull) {
-                notify();
-            }
+            notify();
             return totalRead;
         }
     }
@@ -95,7 +93,6 @@ class ByteQueue {
         }
         synchronized(this) {
             int bufferLength = mBuffer.length;
-            boolean wasEmpty = mStoredBytes == 0;
             while(bufferLength == mStoredBytes) {
                 wait();
             }
@@ -109,11 +106,8 @@ class ByteQueue {
             }
             int bytesToCopy = Math.min(oneRun, length);
             System.arraycopy(buffer, offset, mBuffer, tail, bytesToCopy);
-            offset += bytesToCopy;
             mStoredBytes += bytesToCopy;
-            if (wasEmpty) {
-                notify();
-            }
+            notify();
             return bytesToCopy;
         }
     }

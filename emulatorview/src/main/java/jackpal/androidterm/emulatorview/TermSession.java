@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,7 +159,8 @@ public class TermSession {
                 int written = mWriteQueue.write(data, offset, count);
                 offset += written;
                 count -= written;
-                notifyNewOutput();
+                if (written > 0)
+                    notifyNewOutput();
             }
         } catch (InterruptedException ignored) {
         }
@@ -379,6 +380,7 @@ public class TermSession {
         } catch (InterruptedException e) {
             return;
         }
+        if (bytesRead == 0) return;
 
         // Give subclasses a chance to process the read data
         processInput(mReceiveBuffer, 0, bytesRead);
