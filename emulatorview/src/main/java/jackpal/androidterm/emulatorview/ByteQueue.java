@@ -23,18 +23,22 @@ package jackpal.androidterm.emulatorview;
  */
 
 class ByteQueue {
+    private final byte[] mBuffer;
+    private int mHead;
+    private int mStoredBytes;
+
     public ByteQueue(int size) {
         mBuffer = new byte[size];
     }
 
     public int getBytesAvailable() {
-        synchronized(this) {
+        synchronized (this) {
             return mStoredBytes;
         }
     }
 
     public int read(byte[] buffer, int offset, int length)
-        throws InterruptedException {
+            throws InterruptedException {
 
         if (length == 0) return 0;
         if (length < 0)
@@ -42,7 +46,7 @@ class ByteQueue {
         if (length + offset > buffer.length)
             throw new IllegalArgumentException("length + offset > buffer.length");
 
-        synchronized(this) {
+        synchronized (this) {
             while (mStoredBytes == 0) {
                 wait();
             }
@@ -73,7 +77,7 @@ class ByteQueue {
      * was written and repeat the call to write() if necessary.
      */
     public int write(byte[] buffer, int offset, int length)
-    throws InterruptedException {
+            throws InterruptedException {
 
         if (length == 0) return 0;
         if (length < 0)
@@ -81,9 +85,9 @@ class ByteQueue {
         if (length + offset > buffer.length)
             throw new IllegalArgumentException("length + offset > buffer.length");
 
-        synchronized(this) {
+        synchronized (this) {
             int bufferLength = mBuffer.length;
-            while(bufferLength == mStoredBytes) {
+            while (bufferLength == mStoredBytes) {
                 wait();
             }
             int tail = mHead + mStoredBytes;
@@ -101,8 +105,4 @@ class ByteQueue {
             return bytesToCopy;
         }
     }
-
-    private byte[] mBuffer;
-    private int mHead;
-    private int mStoredBytes;
 }
