@@ -73,9 +73,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="navigation_drawer_open">Navigationsleiste öffnen</string>
     <string name="navigation_drawer_close">Navigationsleiste schließen</string>
 
-    <string name="message_external_storage_rationale">Speicherzugriff ist zur Datenverwaltung erforderlich</string>
-    <string name="message_external_storage_granted">Speicherzugriff wurde zugelassen</string>
-    <string name="message_external_storage_not_granted">Speicherzugriff wurde abgelehnt</string>
+    <string name="message_external_storage_rationale">Zugriff auf Dateien im externen Speicher ist nicht erlaubt</string>
+    <string name="message_external_storage_granted">Zugriff auf den externen Speicher wurde zugelassen</string>
+    <string name="message_external_storage_not_granted">Zugriff auf den externen Speicher wurde abgelehnt</string>
 
     <!-- Context menu -->
     <string name="edit_text">Text bearbeiten</string>
@@ -99,18 +99,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <string name="title_statusbar_preference">Statuszeile</string>
     <string name="summary_statusbar_preference">Die Sichtbarkeit der Statuszeile bestimmen.</string>
     <string name="dialog_title_statusbar_preference">Sichtbarkeit der Statuszeile</string>
-    <string name="restart_statusbar_change">Neustart der App …\n(Änderung der Statuszeile)</string>
+    <string name="restart_statusbar_change">Neustart der App …\n(Änderung der Statuszeile)</string>
 
     <string name="title_actionbar_preference">Aktionsleiste</string>
     <string name="summary_actionbar_preference">Die Sichtbarkeit der Aktionsleiste bestimmen.</string>
     <string name="summary_actionbar_preference_compat">Die Sichtbarkeit der Aktionsleiste bestimmen.</string>
     <string name="dialog_title_actionbar_preference">Sichtbarkeit der Aktionsleiste</string>
-    <string name="restart_actionbar_change">Neustart der App …\n(Änderung der Aktionsleiste)</string>
+    <string name="restart_actionbar_change">Neustart der App …\n(Änderung der Aktionsleiste)</string>
 
     <string name="title_thememode_preference">Darstellung</string>
     <string name="summary_thememode_preference">Die Darstellung festlegen.</string>
     <string name="dialog_title_thememode_preference">Darstellung</string>
-    <string name="restart_thememode_change">Neustart der App …\n(Änderung der Darstellung)</string>
+    <string name="restart_thememode_change">Neustart der App …\n(Änderung der Darstellung)</string>
 
     <string name="title_orientation_preference">Bildschirmausrichtung</string>
     <string name="summary_orientation_preference">Die Bildschirmausrichtung festlegen.</string>
