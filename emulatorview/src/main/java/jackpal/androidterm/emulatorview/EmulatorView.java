@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
- * Copyright (C) 2018-2020 Roumen Petrov.  All rights reserved.
+ * Copyright (C) 2018-2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package jackpal.androidterm.emulatorview;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -138,6 +139,11 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
      * Used to render text
      */
     private TextRenderer mTextRenderer;
+
+    /**
+     * Typeface(font) used by text render if text size is greater than zero.
+     */
+    private Typeface typeface = Typeface.MONOSPACE;
 
     /**
      * Text size. Zero means 4 x 8 font.
@@ -1070,6 +1076,16 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     }
 
     /**
+     * Sets the typeface, which in turn sets the number of rows and columns.
+     *
+     * @param typeface the new typeface.
+     */
+    public void setTypeFace(Typeface typeface) {
+        this.typeface = typeface;
+        updateText();
+    }
+
+    /**
      * Sets the text size, which in turn sets the number of rows and columns.
      *
      * @param fontSize the new font size, in density-independent pixels.
@@ -1442,7 +1458,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     private void updateText() {
         ColorScheme scheme = mColorScheme;
         if (mTextSize > 0) {
-            mTextRenderer = new PaintRenderer(mTextSize, scheme);
+            mTextRenderer = new PaintRenderer(typeface, mTextSize, scheme);
         } else {
             mTextRenderer = new Bitmap4x8FontRenderer(getResources(), scheme);
         }

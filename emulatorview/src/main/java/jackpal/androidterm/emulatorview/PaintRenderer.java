@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2022 Roumen Petrov.  All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +30,10 @@ class PaintRenderer extends BaseTextRenderer {
     private final int mCharAscent;
     private final int mCharDescent;
 
-    public PaintRenderer(int fontSize, ColorScheme scheme) {
+    public PaintRenderer(Typeface typeface, int fontSize, ColorScheme scheme) {
         super(scheme);
         mTextPaint = new Paint();
-        mTextPaint.setTypeface(Typeface.MONOSPACE);
+        mTextPaint.setTypeface(typeface);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(fontSize);
 
