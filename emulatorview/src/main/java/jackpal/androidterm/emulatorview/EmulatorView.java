@@ -564,23 +564,6 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         }
     }
 
-    /**
-     * Set this <code>EmulatorView</code>'s color scheme.
-     *
-     * @param scheme The {@link ColorScheme} to use (use null for the default
-     *               scheme).
-     * @see TermSession#setColorScheme
-     * @see ColorScheme
-     */
-    public void setColorScheme(ColorScheme scheme) {
-        if (scheme == null) {
-            mColorScheme = BaseTextRenderer.defaultColorScheme;
-        } else {
-            mColorScheme = scheme;
-        }
-        updateText();
-    }
-
     @Override
     public boolean onCheckIsTextEditor() {
         return true;
@@ -1093,6 +1076,40 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
     public void setTextSize(int fontSize) {
         mTextSize = (int) (fontSize * mDensity);
         updateText();
+    }
+
+    /**
+     * Set this <code>EmulatorView</code>'s color scheme.
+     *
+     * @param scheme The {@link ColorScheme} to use (use null for the default
+     *               scheme).
+     * @see TermSession#setColorScheme
+     * @see ColorScheme
+     */
+    public void setColorScheme(ColorScheme scheme) {
+        mColorScheme = (scheme != null)
+                ? scheme
+                : BaseTextRenderer.defaultColorScheme;
+        updateText();
+    }
+
+    /**
+     * Sets the typeface, text size, and color scheme
+     * before to force terminal resize and invalidation.
+     *
+     * @param typeface the new typeface.
+     * @param fontSize the new font size, in density-independent pixels.
+     * @param scheme The {@link ColorScheme} to use (use null for the default
+     *               scheme).
+     * @see EmulatorView#setTypeFace
+     * @see EmulatorView#setTextSize
+     * @see EmulatorView#setColorScheme
+     * @see EmulatorView#updateSize
+     */
+    public void setPaintAttributes(Typeface typeface, int fontSize, ColorScheme scheme) {
+        this.typeface = typeface;
+        mTextSize = (int) (fontSize * mDensity);
+        setColorScheme(scheme); // calls updateText();
     }
 
     /**

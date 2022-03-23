@@ -18,6 +18,7 @@
 package jackpal.androidterm;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 
 import jackpal.androidterm.emulatorview.EmulatorView;
@@ -31,8 +32,6 @@ public class TermView extends EmulatorView {
     }
 
     public void updatePrefs(TermSettings settings) {
-        setTextSize(settings.getFontSize());
-        setColorScheme(settings.getColorScheme());
         setUseCookedIME(settings.useCookedIME());
         setBackKeyCharacter(settings.getBackKeyCharacter());
         setAltSendsEsc(settings.getAltSendsEscFlag());
@@ -40,6 +39,9 @@ public class TermView extends EmulatorView {
         setFnKeyCode(settings.getFnKeyCode());
         setTermType(settings.getTermType());
         setMouseTracking(settings.getMouseTrackingFlag());
+        // call last as method invalidates terminal
+        setPaintAttributes(Typeface.MONOSPACE,
+                settings.getFontSize(), settings.getColorScheme());
     }
 
     @Override
