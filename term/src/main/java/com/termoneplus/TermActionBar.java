@@ -71,10 +71,8 @@ public class TermActionBar {
         NavigationBackground.presetColors(context, nav_view);
         {
             View header = nav_view.getHeaderView(0);
-            View icon = header.findViewById(R.id.app_icon);
-            icon.setOnClickListener(this::onAppIconClicked);
-            View name = header.findViewById(R.id.app_name);
-            name.setOnClickListener(this::onAppTitleClicked);
+            View home = header.findViewById(R.id.app_home);
+            home.setOnClickListener(this::onAppIconClicked);
             View email = header.findViewById(R.id.app_email);
             email.setOnClickListener(this::onEmailAddressClicked);
         }
@@ -177,10 +175,6 @@ public class TermActionBar {
     }
 
     public void onAppIconClicked(View view) {
-        WrapOpenURL.launch(view.getContext(), urlApplicationSite());
-    }
-
-    public void onAppTitleClicked(View view) {
         WrapOpenURL.launch(view.getContext(), urlApplicationSite());
     }
 
