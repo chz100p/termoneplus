@@ -64,6 +64,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.resValue  "string", "application_version", variant.versionName
+    }
 }
 
 dependencies {

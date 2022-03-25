@@ -33,11 +33,26 @@
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/application_site"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/application_site"
+                app:srcCompat="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/text2_margin"
+                android:text="@string/application_version"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
