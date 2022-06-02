@@ -506,8 +506,8 @@ class TermKeyListener {
      * @param keyCode the keycode of the keyDown event
      *
      */
-    public void keyDown(int keyCode, KeyEvent event, boolean appMode,
-            boolean allowToggle) throws IOException {
+    public void keyDown(int keyCode, KeyEvent event, boolean appMode) throws IOException {
+        boolean allowToggle = isEventFromToggleDevice(event);
         if (LOG_KEYS) {
             Log.i(TAG, "keyDown(" + keyCode + "," + event + "," + appMode + "," + allowToggle + ")");
         }
@@ -649,7 +649,7 @@ class TermKeyListener {
         return key.getUIMode() << shift;
     }
 
-    static boolean isEventFromToggleDevice(KeyEvent event) {
+    private static boolean isEventFromToggleDevice(KeyEvent event) {
         KeyCharacterMapCompat kcm = KeyCharacterMapCompat.wrap(
                 KeyCharacterMap.load(event.getDeviceId()));
         return kcm.getModifierBehaviour() ==

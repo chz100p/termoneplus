@@ -1339,8 +1339,7 @@ public class EmulatorView extends View implements GestureDetector.OnGestureListe
         try {
             int oldCombiningAccent = mKeyListener.getCombiningAccent();
             int oldCursorMode = mKeyListener.getCursorMode();
-            mKeyListener.keyDown(keyCode, event, getKeypadApplicationMode(),
-                    TermKeyListener.isEventFromToggleDevice(event));
+            mKeyListener.keyDown(keyCode, event, getKeypadApplicationMode());
             if (mKeyListener.getCombiningAccent() != oldCombiningAccent
                     || mKeyListener.getCursorMode() != oldCursorMode) {
                 invalidate();
