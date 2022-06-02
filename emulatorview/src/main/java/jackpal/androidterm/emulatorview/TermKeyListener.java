@@ -1,7 +1,5 @@
 package jackpal.androidterm.emulatorview;
 
-import jackpal.androidterm.emulatorview.compat.KeyCharacterMapCompat;
-
 import java.io.IOException;
 
 import android.util.Log;
@@ -650,10 +648,9 @@ class TermKeyListener {
     }
 
     private static boolean isEventFromToggleDevice(KeyEvent event) {
-        KeyCharacterMapCompat kcm = KeyCharacterMapCompat.wrap(
-                KeyCharacterMap.load(event.getDeviceId()));
-        return kcm.getModifierBehaviour() ==
-                KeyCharacterMapCompat.MODIFIER_BEHAVIOR_CHORDED_OR_TOGGLED;
+        KeyCharacterMap kcm = KeyCharacterMap.load(event.getDeviceId());
+        return kcm.getModifierBehavior() ==
+                KeyCharacterMap.MODIFIER_BEHAVIOR_CHORDED_OR_TOGGLED;
     }
 
     public boolean handleKeyCode(int keyCode, KeyEvent event, boolean appMode) throws IOException {
