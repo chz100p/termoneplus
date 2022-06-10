@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         // plugin version 7.* before 7.0.2 fail to pack native libraries!
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:7.2.1'
     }
 }
 
