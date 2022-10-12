@@ -9,6 +9,11 @@
 
 *.xml text
 
+# Ensure cmake rules files are treated a text files.
+
+CMakeLists.txt text
+# *.txt - not yet
+
 # Use java diff syntax for java files.
 
 *.java diff=java
