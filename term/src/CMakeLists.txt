@@ -14,7 +14,8 @@
 # limitations under the License.
 ##
 
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.0)
+project(term-c)
 
 add_executable(
         libexec-t1plus.so
