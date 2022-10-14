@@ -60,6 +60,7 @@ import com.termoneplus.TermActionBar;
 import com.termoneplus.TermPreferencesActivity;
 import com.termoneplus.WindowListActivity;
 import com.termoneplus.WindowListAdapter;
+import com.termoneplus.compat.SoftInputCompat;
 import com.termoneplus.utils.ConsoleStartupScript;
 import com.termoneplus.utils.SimpleClipboardManager;
 import com.termoneplus.utils.WakeLock;
@@ -882,10 +883,11 @@ public class Term extends AppCompatActivity
     }
 
     private void doToggleSoftKeyboard() {
-        InputMethodManager imm = (InputMethodManager)
-                getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        SoftInputCompat.toggle(getCurrentEmulatorView());
+    }
 
+    private void doToggleSoftKeyboard(View view) {
+        SoftInputCompat.toggle(view);
     }
 
     private void doToggleWakeLock() {
@@ -903,22 +905,22 @@ public class Term extends AppCompatActivity
     }
 
     private void doUIToggle(int x, int y, int width, int height) {
+        View view = getCurrentEmulatorView();
         switch (mActionBarMode) {
             case TermSettings.ACTION_BAR_MODE_ALWAYS_VISIBLE:
                 if (!mHaveFullHwKeyboard) {
-                    doToggleSoftKeyboard();
+                    doToggleSoftKeyboard(view);
                 }
                 break;
             case TermSettings.ACTION_BAR_MODE_HIDES:
                 if (mHaveFullHwKeyboard || y < height / 2) {
                     mActionBar.doToggleActionBar();
-                    return;
                 } else {
-                    doToggleSoftKeyboard();
+                    doToggleSoftKeyboard(view);
                 }
                 break;
         }
-        getCurrentEmulatorView().requestFocus();
+        view.requestFocus();
     }
 
     private void synchronizeActionBar() {
